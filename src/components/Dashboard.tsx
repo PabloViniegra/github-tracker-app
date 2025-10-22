@@ -1,0 +1,332 @@
+"use client";
+
+import { useAuth } from "@/contexts/AuthContext";
+import { useState, useEffect } from "react";
+import { githubApi, GitHubUserDetails } from "@/lib/api";
+import {
+  Card,
+  CardBody,
+  CardHeader,
+  Button,
+  Avatar,
+  Chip,
+  Divider,
+} from "@heroui/react";
+import {
+  LogOut,
+  Github,
+  Calendar,
+  CheckCircle,
+  XCircle,
+  MapPin,
+  Building2,
+  Link as LinkIcon,
+  Users,
+  GitFork,
+  Star,
+} from "lucide-react";
+import Link from "next/link";
+
+/**
+ * Dashboard Component
+ *
+ * Main dashboard view shown to authenticated users.
+ *
+ * Features:
+ * - Displays user profile information
+ * - Shows GitHub username, avatar, and account details
+ * - Provides logout functionality
+ * - Displays webhook configuration status
+ *
+ * Usage:
+ * ```tsx
+ * <Dashboard />
+ * ```
+ */
+export default function Dashboard() {
+  const { user, logout, isLoading } = useAuth();
+  const [githubDetails, setGithubDetails] = useState<GitHubUserDetails | null>(
+    null
+  );
+  const [loadingGithub, setLoadingGithub] = useState(false);
+
+  // Fetch GitHub details when user is available
+  useEffect(() => {
+    if (user?.username) {
+      setLoadingGithub(true);
+      githubApi
+        .getUserDetails(user.username)
+        .then((details) => {
+          setGithubDetails(details);
+        })
+        .catch((error) => {
+          console.error("Failed to fetch GitHub details:", error);
+        })
+        .finally(() => {
+          setLoadingGithub(false);
+        });
+    }
+  }, [user?.username]);
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="text-center">
+          <div className="w-12 h-12 border-2 border-muted border-t-foreground rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-muted-foreground font-sans">
+            Loading dashboard...
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return null;
+  }
+
+  return (
+    <div className="min-h-screen bg-background">
+      {/* Header */}
+      <header className="border-b border-border bg-background sticky top-0 z-50">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+          <h1 className="text-xl font-semibold tracking-tight text-foreground font-sans">
+            GitHub Activity Tracker
+          </h1>
+          <Button
+            variant="light"
+            size="sm"
+            className="text-muted-foreground text-sm hover:text-foreground"
+            onPress={handleLogout}
+            startContent={<LogOut className="w-4 h-4" />}
+          >
+            Logout
+          </Button>
+        </div>
+      </header>
+
+      <div className="max-w-6xl mx-auto px-6 py-8">
+        {/* User Profile Card */}
+        <Card className="border border-border bg-card shadow-sm mb-8">
+          <CardBody className="p-8">
+            <div className="flex items-start gap-6">
+              <Avatar
+                src={user.avatar_url}
+                alt={user.username}
+                className="w-20 h-20 border-2 border-border"
+              />
+
+              <div className="flex-1">
+                <h2 className="text-2xl font-semibold mb-1 text-foreground font-sans">
+                  {user.name || user.username}
+                </h2>
+
+                <a
+                  href={user.profile_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1 font-mono mb-3"
+                >
+                  <Github className="w-3.5 h-3.5" />@{user.username}
+                </a>
+
+                {/* Bio */}
+                {githubDetails?.bio && (
+                  <p className="text-sm text-foreground mt-3 font-sans">
+                    {githubDetails.bio}
+                  </p>
+                )}
+
+                {/* GitHub Info - Location, Company, Blog */}
+                <div className="flex flex-wrap gap-4 mt-3">
+                  {githubDetails?.location && (
+                    <span className="text-sm text-muted-foreground inline-flex items-center gap-1.5 font-sans">
+                      <MapPin className="w-4 h-4" />
+                      {githubDetails.location}
+                    </span>
+                  )}
+                  {githubDetails?.company && (
+                    <span className="text-sm text-muted-foreground inline-flex items-center gap-1.5 font-sans">
+                      <Building2 className="w-4 h-4" />
+                      {githubDetails.company}
+                    </span>
+                  )}
+                  {githubDetails?.blog && (
+                    <a
+                      href={
+                        githubDetails.blog.startsWith("http")
+                          ? githubDetails.blog
+                          : `https://${githubDetails.blog}`
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 font-sans transition-colors"
+                    >
+                      <LinkIcon className="w-4 h-4" />
+                      {githubDetails.blog}
+                    </a>
+                  )}
+                </div>
+
+                {/* GitHub Statistics */}
+                {githubDetails && (
+                  <div className="flex gap-6 mt-4 pt-4 border-t border-border">
+                    <div className="inline-flex items-center gap-2">
+                      <GitFork className="w-4 h-4 text-muted-foreground" />
+                      <span className="text-sm font-sans">
+                        <span className="font-semibold text-foreground">
+                          {githubDetails.public_repos}
+                        </span>
+                        <span className="text-muted-foreground ml-1">
+                          repositories
+                        </span>
+                      </span>
+                    </div>
+                    <div className="inline-flex items-center gap-2">
+                      <Users className="w-4 h-4 text-muted-foreground" />
+                      <span className="text-sm font-sans">
+                        <span className="font-semibold text-foreground">
+                          {githubDetails.followers}
+                        </span>
+                        <span className="text-muted-foreground ml-1">
+                          followers
+                        </span>
+                      </span>
+                    </div>
+                    <div className="inline-flex items-center gap-2">
+                      <span className="text-sm font-sans">
+                        <span className="font-semibold text-foreground">
+                          {githubDetails.following}
+                        </span>
+                        <span className="text-muted-foreground ml-1">
+                          following
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {/* Metadata Grid */}
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-6 pt-6 border-t border-border">
+                  {githubDetails?.created_at && (
+                    <div>
+                      <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1 font-sans">
+                        GitHub Member Since
+                      </p>
+                      <p className="text-sm font-mono text-foreground">
+                        {new Date(githubDetails.created_at).toLocaleDateString(
+                          "en-US",
+                          { year: "numeric", month: "long" }
+                        )}
+                      </p>
+                    </div>
+                  )}
+
+                  {user.email && (
+                    <div>
+                      <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1 font-sans">
+                        Email
+                      </p>
+                      <p className="text-sm font-mono text-foreground">
+                        {user.email}
+                      </p>
+                    </div>
+                  )}
+
+                  <div>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1 font-sans">
+                      GitHub ID
+                    </p>
+                    <p className="text-sm font-mono text-foreground">
+                      {user.github_id}
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1 font-sans">
+                      App Registered
+                    </p>
+                    <p className="text-sm font-mono text-foreground">
+                      {new Date(user.created_at).toLocaleDateString()}
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1 font-sans">
+                      Webhook Status
+                    </p>
+                    <span className="text-sm inline-flex items-center gap-1.5 text-foreground font-sans">
+                      <span
+                        className={`w-1.5 h-1.5 rounded-full ${
+                          user.webhook_configured
+                            ? "bg-foreground"
+                            : "bg-muted-foreground"
+                        }`}
+                      />
+                      {user.webhook_configured ? "Active" : "Inactive"}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </CardBody>
+        </Card>
+
+        {/* Quick Actions */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <Link href="/repositories">
+            <button className="group border border-border bg-card hover:bg-accent hover:border-foreground transition-all p-6 rounded-lg text-left w-full">
+              <div className="flex items-start gap-3">
+                <Github className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
+                <div>
+                  <h3 className="font-medium mb-1 text-foreground font-sans">
+                    Repositories
+                  </h3>
+                  <p className="text-sm text-muted-foreground font-serif">
+                    View and manage repos
+                  </p>
+                </div>
+              </div>
+            </button>
+          </Link>
+
+          <button className="group border border-border bg-card hover:bg-accent hover:border-foreground transition-all p-6 rounded-lg text-left">
+            <div className="flex items-start gap-3">
+              <Calendar className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
+              <div>
+                <h3 className="font-medium mb-1 text-foreground font-sans">
+                  Activity
+                </h3>
+                <p className="text-sm text-muted-foreground font-serif">
+                  Track GitHub events
+                </p>
+              </div>
+            </div>
+          </button>
+
+          <button className="group border border-border bg-card hover:bg-accent hover:border-foreground transition-all p-6 rounded-lg text-left">
+            <div className="flex items-start gap-3">
+              <CheckCircle className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
+              <div>
+                <h3 className="font-medium mb-1 text-foreground font-sans">
+                  Notifications
+                </h3>
+                <p className="text-sm text-muted-foreground font-serif">
+                  Webhook alerts
+                </p>
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
