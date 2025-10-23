@@ -1,35 +1,39 @@
+/**
+ * Events Page
+ * GitHub activity timeline with infinite scroll
+ */
+
 "use client";
 
-import { Suspense, useEffect } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@heroui/react";
 import { ArrowLeft, LogOut } from "lucide-react";
+import EventsTimeline from "@/components/events/EventsTimeline";
 import Link from "next/link";
-import RepositoryList from "@/components/RepositoryList";
-import RepositoryCardSkeleton from "@/components/RepositoryCardSkeleton";
 import { motion } from "framer-motion";
 
 /**
- * Repositories Page
+ * Events Page
  *
- * Protected page for viewing and managing GitHub repositories.
- * Requires authentication.
+ * Main page for viewing GitHub activity timeline.
  *
  * Features:
- * - Repository list with search
- * - Infinite scroll
- * - Loading states with skeletons
- * - Responsive grid layout
+ * - Auth protection (redirects to /login if not authenticated)
+ * - Header with navigation
+ * - Infinite scroll timeline
  *
- * Route: /repositories
+ * Route: /events
  */
-export default function RepositoriesPage() {
+export default function EventsPage() {
   const { isAuthenticated, isLoading, logout, user } = useAuth();
   const router = useRouter();
 
+  /**
+   * Redirect to login if not authenticated
+   */
   useEffect(() => {
-    // Redirect to login if not authenticated
     if (!isLoading && !isAuthenticated) {
       router.push("/login");
     }
@@ -46,7 +50,9 @@ export default function RepositoriesPage() {
     }
   };
 
-  // Show loading state while checking authentication
+  /**
+   * Loading state while checking auth
+   */
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
@@ -58,10 +64,13 @@ export default function RepositoriesPage() {
     );
   }
 
-  // Return null while redirecting to login
+  /**
+   * Redirect in progress (don't show content)
+   */
   if (!isAuthenticated) {
     return null;
   }
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -90,7 +99,7 @@ export default function RepositoriesPage() {
 
               <div>
                 <h1 className="text-xl font-semibold tracking-tight text-foreground font-sans">
-                  Repositories
+                  Activity Timeline
                 </h1>
                 {user && (
                   <p className="text-xs text-muted-foreground font-mono mt-0.5">
@@ -118,47 +127,17 @@ export default function RepositoriesPage() {
 
       {/* Main Content */}
       <main className="px-6 py-8">
-        <div className="max-w-7xl mx-auto">
-          <Suspense fallback={<RepositoriesLoadingSkeleton />}>
-            <RepositoryList />
-          </Suspense>
-        </div>
+        <EventsTimeline />
       </main>
 
       {/* Footer */}
       <footer className="border-t border-border bg-background mt-16">
         <div className="max-w-6xl mx-auto px-6 py-6">
           <p className="text-xs text-muted-foreground text-center font-sans">
-            GitHub Activity Tracker - Browse and manage your repositories
+            GitHub Activity Tracker - Your recent activity across all repositories
           </p>
         </div>
       </footer>
-    </div>
-  );
-}
-
-/**
- * Loading Skeleton for Repositories Page
- *
- * Shown while RepositoryList is loading initially.
- */
-function RepositoriesLoadingSkeleton() {
-  return (
-    <div className="space-y-6">
-      {/* Search Skeleton */}
-      <div className="max-w-md">
-        <div className="h-12 w-full bg-muted rounded animate-pulse" />
-      </div>
-
-      {/* Count Skeleton */}
-      <div className="h-5 w-48 bg-muted rounded animate-pulse" />
-
-      {/* Grid of skeletons */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {Array.from({ length: 6 }).map((_, i) => (
-          <RepositoryCardSkeleton key={i} />
-        ))}
-      </div>
     </div>
   );
 }

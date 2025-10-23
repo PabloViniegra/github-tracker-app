@@ -6,6 +6,7 @@ import { authApi, tokenStorage, isTokenResponse, isGitHubLoginResponse } from "@
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import { Github, Bell, BarChart3, Webhook, AlertCircle } from "lucide-react";
+import { motion } from "framer-motion";
 
 /**
  * Login Page Component
@@ -71,7 +72,7 @@ export default function LoginPage() {
         console.log("[Login] User already authorized, received tokens");
 
         // Store tokens
-        tokenStorage.setTokens(response.access_token, response.refresh_token);
+        tokenStorage.setTokens(response.access_token, response.refresh_token || "");
 
         // Redirect to dashboard
         router.push("/");
@@ -138,18 +139,28 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-background px-4">
       <div className="w-full max-w-md">
         {/* Hero Section */}
-        <div className="text-center mb-12">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="text-center mb-12"
+        >
           <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-4 text-foreground font-sans">
             GitHub Activity Tracker
           </h1>
           <p className="text-lg text-muted-foreground max-w-md mx-auto font-sans">
             Monitor your GitHub activity in real-time
           </p>
-        </div>
+        </motion.div>
 
         {/* Login Card */}
-        <Card className="border border-border bg-card shadow-sm hover:shadow-md transition-shadow">
-          <CardBody className="p-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+        >
+          <Card className="border border-border bg-card shadow-sm hover:shadow-md transition-shadow">
+            <CardBody className="p-12">
             <div className="flex flex-col items-center">
               {/* GitHub Icon */}
               <div className="flex justify-center mb-6">
@@ -166,13 +177,19 @@ export default function LoginPage() {
                 </div>
               ) : (
                 <>
-                  <Button
-                    size="lg"
-                    className="w-full bg-foreground text-background hover:bg-muted-foreground transition-colors font-medium"
-                    onClick={handleGitHubLogin}
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-full"
                   >
-                    Sign in with GitHub
-                  </Button>
+                    <Button
+                      size="lg"
+                      className="w-full bg-foreground text-background hover:bg-muted-foreground transition-colors font-medium"
+                      onClick={handleGitHubLogin}
+                    >
+                      Sign in with GitHub
+                    </Button>
+                  </motion.div>
 
                   <p className="text-xs text-muted-foreground text-center mt-6 font-sans">
                     Secure authentication via GitHub OAuth
@@ -182,7 +199,12 @@ export default function LoginPage() {
 
               {/* Error Message */}
               {error && (
-                <div className="mt-6 w-full">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="mt-6 w-full"
+                >
                   <Card className="border border-destructive/50 bg-card">
                     <CardBody className="p-4">
                       <div className="flex items-start gap-3">
@@ -198,18 +220,24 @@ export default function LoginPage() {
                       </div>
                     </CardBody>
                   </Card>
-                </div>
+                </motion.div>
               )}
             </div>
           </CardBody>
         </Card>
+        </motion.div>
 
         {/* Simplified Footer */}
-        <div className="mt-8 text-center">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-8 text-center"
+        >
           <p className="text-xs text-muted-foreground font-sans">
             Track repositories, webhooks, and GitHub events
           </p>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

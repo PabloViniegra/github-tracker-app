@@ -4,13 +4,15 @@
     "DISABLE_NON_ESSENTIAL_MODEL_CALLS": "1",
     "DISABLE_COST_WARNINGS": "1"
   },
+  "permissions": {
+    "allow": [
+      "Bash(pnpm run lint)",
+      "Bash(pnpm run build:*)",
+      "Bash(timeout 15 pnpm dev:*)"
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "python3 .claude/scripts/context-monitor.py"
-  },
-  "permissions": {
-    "allow": [
-      "Bash(pnpm run lint)"
-    ]
   }
 }

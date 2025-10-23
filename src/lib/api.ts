@@ -3,6 +3,8 @@
  * Base URL: http://localhost:8000/api/v1
  */
 
+import { GitHubEventsResponse } from '@/types/github';
+
 const API_BASE_URL = 'http://localhost:8000/api/v1';
 
 // Token storage keys
@@ -147,7 +149,12 @@ async function apiRequest<T>(
         errorMessage = `${errorMessage}. Could not parse error response.`;
       }
 
-      console.error(`[API] Error:`, errorMessage);
+      // Only log non-auth errors to avoid noise from expected token expiration
+      const isAuthError = response.status === 401 || errorMessage.includes('credentials');
+      if (!isAuthError) {
+        console.error(`[API] Error:`, errorMessage);
+      }
+
       throw new Error(errorMessage);
     }
 
@@ -352,9 +359,15 @@ export const activityApi = {
 
   /**
    * Get user activity events
+   * @param page - Page number for pagination (1-indexed)
+   * @param perPage - Number of events per page (default: 30, max: 100)
+   * @returns Promise with events array
    */
-  getEvents: async () => {
-    return authenticatedRequest('/activity/events');
+  getEvents: async (page: number = 1, perPage: number = 30): Promise<GitHubEventsResponse> => {
+    const params = new URLSearchParams();
+    params.append('page', String(page));
+    params.append('per_page', String(Math.min(perPage, 100)));
+    return authenticatedRequest<GitHubEventsResponse>(`/activity/events?${params}`);
   },
 };
 

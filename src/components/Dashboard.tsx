@@ -26,6 +26,7 @@ import {
   Star,
 } from "lucide-react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 /**
  * Dashboard Component
@@ -96,27 +97,43 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="border-b border-border bg-background sticky top-0 z-50">
+      <motion.header
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+        className="border-b border-border bg-background sticky top-0 z-50"
+      >
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           <h1 className="text-xl font-semibold tracking-tight text-foreground font-sans">
             GitHub Activity Tracker
           </h1>
-          <Button
-            variant="light"
-            size="sm"
-            className="text-muted-foreground text-sm hover:text-foreground"
-            onPress={handleLogout}
-            startContent={<LogOut className="w-4 h-4" />}
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.2 }}
           >
-            Logout
-          </Button>
+            <Button
+              variant="light"
+              size="sm"
+              className="text-muted-foreground text-sm hover:text-foreground"
+              onPress={handleLogout}
+              startContent={<LogOut className="w-4 h-4" />}
+            >
+              Logout
+            </Button>
+          </motion.div>
         </div>
-      </header>
+      </motion.header>
 
       <div className="max-w-6xl mx-auto px-6 py-8">
         {/* User Profile Card */}
-        <Card className="border border-border bg-card shadow-sm mb-8">
-          <CardBody className="p-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+        >
+          <Card className="border border-border bg-card shadow-sm mb-8">
+            <CardBody className="p-8">
             <div className="flex items-start gap-6">
               <Avatar
                 src={user.avatar_url}
@@ -279,52 +296,79 @@ export default function Dashboard() {
             </div>
           </CardBody>
         </Card>
+        </motion.div>
 
         {/* Quick Actions */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Link href="/repositories">
-            <button className="group border border-border bg-card hover:bg-accent hover:border-foreground transition-all p-6 rounded-lg text-left w-full">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3, delay: 0.2, ease: "easeOut" }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <Link href="/repositories">
+              <button className="group border border-border bg-card hover:bg-accent hover:border-foreground transition-all p-6 rounded-lg text-left w-full h-full">
+                <div className="flex items-start gap-3">
+                  <Github className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
+                  <div>
+                    <h3 className="font-medium mb-1 text-foreground font-sans">
+                      Repositories
+                    </h3>
+                    <p className="text-sm text-muted-foreground font-serif">
+                      View and manage repos
+                    </p>
+                  </div>
+                </div>
+              </button>
+            </Link>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3, delay: 0.25, ease: "easeOut" }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <Link href="/events">
+              <button className="group border border-border bg-card hover:bg-accent hover:border-foreground transition-all p-6 rounded-lg text-left w-full h-full">
+                <div className="flex items-start gap-3">
+                  <Calendar className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
+                  <div>
+                    <h3 className="font-medium mb-1 text-foreground font-sans">
+                      Activity
+                    </h3>
+                    <p className="text-sm text-muted-foreground font-serif">
+                      Track GitHub events
+                    </p>
+                  </div>
+                </div>
+              </button>
+            </Link>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3, delay: 0.3, ease: "easeOut" }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <button className="group border border-border bg-card hover:bg-accent hover:border-foreground transition-all p-6 rounded-lg text-left h-full w-full">
               <div className="flex items-start gap-3">
-                <Github className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
+                <CheckCircle className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
                 <div>
                   <h3 className="font-medium mb-1 text-foreground font-sans">
-                    Repositories
+                    Notifications
                   </h3>
                   <p className="text-sm text-muted-foreground font-serif">
-                    View and manage repos
+                    Webhook alerts
                   </p>
                 </div>
               </div>
             </button>
-          </Link>
-
-          <button className="group border border-border bg-card hover:bg-accent hover:border-foreground transition-all p-6 rounded-lg text-left">
-            <div className="flex items-start gap-3">
-              <Calendar className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
-              <div>
-                <h3 className="font-medium mb-1 text-foreground font-sans">
-                  Activity
-                </h3>
-                <p className="text-sm text-muted-foreground font-serif">
-                  Track GitHub events
-                </p>
-              </div>
-            </div>
-          </button>
-
-          <button className="group border border-border bg-card hover:bg-accent hover:border-foreground transition-all p-6 rounded-lg text-left">
-            <div className="flex items-start gap-3">
-              <CheckCircle className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
-              <div>
-                <h3 className="font-medium mb-1 text-foreground font-sans">
-                  Notifications
-                </h3>
-                <p className="text-sm text-muted-foreground font-serif">
-                  Webhook alerts
-                </p>
-              </div>
-            </div>
-          </button>
+          </motion.div>
         </div>
       </div>
     </div>

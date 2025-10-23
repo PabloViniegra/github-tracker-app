@@ -3,6 +3,7 @@
 import { Card, CardBody } from "@heroui/react";
 import { Star, GitFork, Lock, ExternalLink } from "lucide-react";
 import { Repository } from "@/lib/api";
+import { motion } from "framer-motion";
 
 /**
  * Language color mapping
@@ -33,6 +34,7 @@ const LANGUAGE_COLORS: Record<string, string> = {
 
 interface RepositoryCardProps {
   repository: Repository;
+  index?: number;
 }
 
 /**
@@ -47,26 +49,39 @@ interface RepositoryCardProps {
  * - Star and fork counts
  * - Private badge for private repos
  * - Link to GitHub repository
- * - Hover effects
+ * - Hover effects and entrance animations
  *
  * Usage:
  * ```tsx
- * <RepositoryCard repository={repo} />
+ * <RepositoryCard repository={repo} index={0} />
  * ```
  */
-export default function RepositoryCard({ repository }: RepositoryCardProps) {
+export default function RepositoryCard({ repository, index = 0 }: RepositoryCardProps) {
   const languageColor = repository.language
     ? LANGUAGE_COLORS[repository.language] || "#858585"
     : "#858585";
 
   return (
-    <a
-      href={repository.html_url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="block group"
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{
+        duration: 0.3,
+        delay: index < 20 ? index * 0.05 : 0,
+        ease: "easeOut"
+      }}
+      whileHover={{ scale: 1.02 }}
+      className="h-full"
     >
-      <Card className="border border-border bg-card shadow-sm hover:bg-accent hover:border-foreground transition-all h-full">
+      <a
+        href={repository.html_url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block group h-full"
+      >
+        <Card className="border border-border bg-card shadow-sm hover:bg-accent hover:border-foreground transition-all h-full">
         <CardBody className="p-6">
           <div className="flex flex-col h-full space-y-4">
             {/* Repository Name and Privacy Badge */}
@@ -97,13 +112,17 @@ export default function RepositoryCard({ repository }: RepositoryCardProps) {
             <div className="flex items-center gap-4 pt-2 border-t border-border">
               {/* Language Badge */}
               {repository.language && (
-                <span className="inline-flex items-center gap-1.5 text-xs font-medium text-foreground font-sans">
-                  <span
+                <motion.span
+                  whileHover={{ scale: 1.05 }}
+                  className="inline-flex items-center gap-1.5 text-xs font-medium text-foreground font-sans"
+                >
+                  <motion.span
+                    whileHover={{ scale: 1.2 }}
                     className="w-3 h-3 rounded-full"
                     style={{ backgroundColor: languageColor }}
                   />
                   {repository.language}
-                </span>
+                </motion.span>
               )}
 
               {/* Stars */}
@@ -124,5 +143,6 @@ export default function RepositoryCard({ repository }: RepositoryCardProps) {
         </CardBody>
       </Card>
     </a>
+    </motion.div>
   );
 }

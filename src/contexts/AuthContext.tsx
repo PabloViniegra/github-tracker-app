@@ -55,8 +55,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const userProfile = await authApi.getCurrentUser();
       setUser(userProfile);
     } catch (error) {
-      console.error('[AuthContext] Failed to load user:', error);
-      // If loading user fails, clear tokens (likely expired/invalid)
+      // Check if it's an authentication error (expired/invalid tokens)
+      const isAuthError = error instanceof Error &&
+        (error.message.includes('401') ||
+         error.message.includes('credentials') ||
+         error.message.includes('Session expired'));
+
+      if (isAuthError) {
+        // Silent cleanup for auth errors (expected when tokens expire)
+        console.log('[AuthContext] Session expired, clearing tokens');
+      } else {
+        // Log other unexpected errors
+        console.error('[AuthContext] Failed to load user:', error);
+      }
+
+      // Clear tokens and reset state
       tokenStorage.clearTokens();
       setUser(null);
     } finally {
