@@ -7,6 +7,7 @@ import RepositoryCardSkeleton from "./RepositoryCardSkeleton";
 import { LoadingSpinner } from "./Loading";
 import { AlertCircle, Search } from "lucide-react";
 import { Button, Input } from "@heroui/react";
+import { motion } from "framer-motion";
 
 /**
  * Repository List Component
@@ -209,7 +210,12 @@ export default function RepositoryList() {
   return (
     <div className="space-y-6">
       {/* Search Input */}
-      <div className="max-w-md">
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+        className="max-w-md"
+      >
         <Input
           type="text"
           placeholder="Search repositories..."
@@ -221,7 +227,7 @@ export default function RepositoryList() {
             inputWrapper: "border border-border bg-card hover:border-foreground focus-within:border-foreground transition-colors",
           }}
         />
-      </div>
+      </motion.div>
 
       {/* Repository Count */}
       <div className="text-sm text-muted-foreground font-sans">
@@ -248,8 +254,8 @@ export default function RepositoryList() {
       {filteredRepositories.length > 0 && (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {displayedRepositories.map((repo) => (
-              <RepositoryCard key={repo.id} repository={repo} />
+            {displayedRepositories.map((repo, index) => (
+              <RepositoryCard key={repo.id} repository={repo} index={index} />
             ))}
           </div>
 
