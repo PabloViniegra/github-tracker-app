@@ -13,6 +13,7 @@ import { ArrowLeft, LogOut } from "lucide-react";
 import EventsTimeline from "@/components/events/EventsTimeline";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import ScrollToTop from "@/components/ScrollToTop";
 
 /**
  * Events Page
@@ -138,6 +139,9 @@ export default function EventsPage() {
           </p>
         </div>
       </footer>
+
+      {/* Scroll to Top Button */}
+      <ScrollToTop />
     </div>
   );
 }

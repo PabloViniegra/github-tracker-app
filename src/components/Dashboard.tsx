@@ -11,6 +11,7 @@ import {
   Avatar,
   Chip,
   Divider,
+  Tooltip,
 } from "@heroui/react";
 import {
   LogOut,
@@ -352,22 +353,25 @@ export default function Dashboard() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3, delay: 0.3, ease: "easeOut" }}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
           >
-            <button className="group border border-border bg-card hover:bg-accent hover:border-foreground transition-all p-6 rounded-lg text-left h-full w-full">
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
-                <div>
-                  <h3 className="font-medium mb-1 text-foreground font-sans">
-                    Notifications
-                  </h3>
-                  <p className="text-sm text-muted-foreground font-serif">
-                    Webhook alerts
-                  </p>
+            <Tooltip content="Coming soon..." placement="top">
+              <button
+                disabled
+                className="group border border-border bg-card opacity-60 cursor-not-allowed transition-all p-6 rounded-lg text-left h-full w-full"
+              >
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="w-5 h-5 text-muted-foreground" />
+                  <div>
+                    <h3 className="font-medium mb-1 text-foreground font-sans">
+                      Notifications
+                    </h3>
+                    <p className="text-sm text-muted-foreground font-serif">
+                      Webhook alerts
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </button>
+              </button>
+            </Tooltip>
           </motion.div>
         </div>
       </div>

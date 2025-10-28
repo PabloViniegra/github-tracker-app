@@ -9,6 +9,7 @@ import Link from "next/link";
 import RepositoryList from "@/components/RepositoryList";
 import RepositoryCardSkeleton from "@/components/RepositoryCardSkeleton";
 import { motion } from "framer-motion";
+import ScrollToTop from "@/components/ScrollToTop";
 
 /**
  * Repositories Page
@@ -133,6 +134,9 @@ export default function RepositoriesPage() {
           </p>
         </div>
       </footer>
+
+      {/* Scroll to Top Button */}
+      <ScrollToTop />
     </div>
   );
 }

@@ -55,3 +55,6 @@ next-env.d.ts
 # markdown files (except root README.md)
 *.md
 !README.md
+
+# .zed
+.zed
