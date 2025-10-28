@@ -1,15 +1,17 @@
 "use client";
 
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, lazy } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@heroui/react";
 import { ArrowLeft, LogOut } from "lucide-react";
 import Link from "next/link";
-import RepositoryList from "@/components/RepositoryList";
 import RepositoryCardSkeleton from "@/components/RepositoryCardSkeleton";
 import { motion } from "framer-motion";
 import ScrollToTop from "@/components/ScrollToTop";
+
+// Lazy load heavy repository list component
+const RepositoryList = lazy(() => import("@/components/RepositoryList"));
 
 /**
  * Repositories Page
@@ -76,7 +78,10 @@ export default function RepositoriesPage() {
           <div className="flex items-center justify-between">
             {/* Left: Back button */}
             <div className="flex items-center gap-4">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 <Link href="/">
                   <Button
                     variant="light"

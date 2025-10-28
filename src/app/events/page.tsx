@@ -5,15 +5,18 @@
 
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@heroui/react";
 import { ArrowLeft, LogOut } from "lucide-react";
-import EventsTimeline from "@/components/events/EventsTimeline";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import ScrollToTop from "@/components/ScrollToTop";
+import { EventSkeletonList } from "@/components/events/EventSkeleton";
+
+// Lazy load heavy timeline component
+const EventsTimeline = lazy(() => import("@/components/events/EventsTimeline"));
 
 /**
  * Events Page
@@ -85,7 +88,10 @@ export default function EventsPage() {
           <div className="flex items-center justify-between">
             {/* Left: Back button */}
             <div className="flex items-center gap-4">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 <Link href="/">
                   <Button
                     variant="light"
@@ -128,14 +134,23 @@ export default function EventsPage() {
 
       {/* Main Content */}
       <main className="px-6 py-8">
-        <EventsTimeline />
+        <Suspense
+          fallback={
+            <div className="max-w-4xl mx-auto">
+              <EventSkeletonList count={5} />
+            </div>
+          }
+        >
+          <EventsTimeline />
+        </Suspense>
       </main>
 
       {/* Footer */}
       <footer className="border-t border-border bg-background mt-16">
         <div className="max-w-6xl mx-auto px-6 py-6">
           <p className="text-xs text-muted-foreground text-center font-sans">
-            GitHub Activity Tracker - Your recent activity across all repositories
+            GitHub Activity Tracker - Your recent activity across all
+            repositories
           </p>
         </div>
       </footer>
