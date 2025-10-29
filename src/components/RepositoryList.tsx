@@ -1,13 +1,15 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
-import { activityApi, Repository } from "@/lib/api";
+import React from "react";
 import RepositoryCard from "./RepositoryCard";
 import RepositoryCardSkeleton from "./RepositoryCardSkeleton";
 import { LoadingSpinner } from "./Loading";
 import { AlertCircle, Search } from "lucide-react";
 import { Button, Input } from "@heroui/react";
 import { motion } from "framer-motion";
+import { useRepositories } from "@/hooks/useRepositories";
+import { useRepositorySearch } from "@/hooks/useRepositorySearch";
+import { usePaginatedRepositories } from "@/hooks/usePaginatedRepositories";
 
 /**
  * Repository List Component
@@ -27,130 +29,20 @@ import { motion } from "framer-motion";
  * <RepositoryList />
  * ```
  */
-export default function RepositoryList() {
-  const [repositories, setRepositories] = useState<Repository[]>([]);
-  const [filteredRepositories, setFilteredRepositories] = useState<Repository[]>([]);
-  const [displayedRepositories, setDisplayedRepositories] = useState<Repository[]>([]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
-
-  const observerTarget = useRef<HTMLDivElement>(null);
-  const debounceTimer = useRef<NodeJS.Timeout | null>(null);
-
-  const REPOS_PER_PAGE = 30;
-
-  // Fetch all repositories on mount
-  useEffect(() => {
-    fetchRepositories();
-  }, []);
-
-  const fetchRepositories = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-
-      const response = await activityApi.getRepositories();
-      setRepositories(response.repositories);
-      setFilteredRepositories(response.repositories);
-
-      // Display first page
-      setDisplayedRepositories(response.repositories.slice(0, REPOS_PER_PAGE));
-      setHasMore(response.repositories.length > REPOS_PER_PAGE);
-      setPage(1);
-    } catch (err) {
-      console.error("Failed to fetch repositories:", err);
-      setError(err instanceof Error ? err.message : "Failed to load repositories");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleSearch = useCallback((query: string) => {
-    const normalizedQuery = query.toLowerCase().trim();
-
-    if (!normalizedQuery) {
-      // Reset to all repositories
-      setFilteredRepositories(repositories);
-      setDisplayedRepositories(repositories.slice(0, REPOS_PER_PAGE));
-      setHasMore(repositories.length > REPOS_PER_PAGE);
-      setPage(1);
-      return;
-    }
-
-    // Filter repositories by name or description
-    const filtered = repositories.filter((repo) => {
-      const nameMatch = repo.name.toLowerCase().includes(normalizedQuery);
-      const descMatch = repo.description?.toLowerCase().includes(normalizedQuery) || false;
-      const languageMatch = repo.language?.toLowerCase().includes(normalizedQuery) || false;
-      return nameMatch || descMatch || languageMatch;
-    });
-
-    setFilteredRepositories(filtered);
-    setDisplayedRepositories(filtered.slice(0, REPOS_PER_PAGE));
-    setHasMore(filtered.length > REPOS_PER_PAGE);
-    setPage(1);
-  }, [repositories]);
-
-  // Debounced search handler
-  useEffect(() => {
-    if (debounceTimer.current) {
-      clearTimeout(debounceTimer.current);
-    }
-
-    debounceTimer.current = setTimeout(() => {
-      handleSearch(searchQuery);
-    }, 500);
-
-    return () => {
-      if (debounceTimer.current) {
-        clearTimeout(debounceTimer.current);
-      }
-    };
-  }, [searchQuery, handleSearch]);
-
-  // Load more repositories for infinite scroll
-  const loadMore = useCallback(() => {
-    if (!hasMore || loading) return;
-
-    const nextPage = page + 1;
-    const startIndex = 0;
-    const endIndex = nextPage * REPOS_PER_PAGE;
-
-    const newDisplayed = filteredRepositories.slice(startIndex, endIndex);
-    setDisplayedRepositories(newDisplayed);
-    setPage(nextPage);
-    setHasMore(endIndex < filteredRepositories.length);
-  }, [page, hasMore, loading, filteredRepositories]);
-
-  // Intersection Observer for infinite scroll
-  useEffect(() => {
-    const currentTarget = observerTarget.current;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && hasMore && !loading) {
-          loadMore();
-        }
-      },
-      { threshold: 1.0 }
-    );
-
-    if (currentTarget) {
-      observer.observe(currentTarget);
-    }
-
-    return () => {
-      if (currentTarget) {
-        observer.unobserve(currentTarget);
-      }
-    };
-  }, [hasMore, loading, loadMore]);
+const RepositoryList = React.memo(function RepositoryList() {
+  // Custom hooks for separation of concerns
+  const { repositories, isLoading, error, refetch } = useRepositories();
+  const { searchQuery, setSearchQuery, filteredRepositories } = useRepositorySearch({
+    repositories,
+    debounceMs: 500,
+  });
+  const { displayedRepositories, hasMore, observerTarget } = usePaginatedRepositories({
+    repositories: filteredRepositories,
+    itemsPerPage: 30,
+  });
 
   // Loading state - show skeletons
-  if (loading && repositories.length === 0) {
+  if (isLoading && repositories.length === 0) {
     return (
       <div className="space-y-6">
         {/* Search Skeleton */}
@@ -179,7 +71,7 @@ export default function RepositoryList() {
             {error}
           </p>
           <Button
-            onPress={fetchRepositories}
+            onPress={refetch}
             variant="solid"
             className="bg-foreground text-background hover:bg-foreground/90"
           >
@@ -281,4 +173,6 @@ export default function RepositoryList() {
       )}
     </div>
   );
-}
+});
+
+export default RepositoryList;

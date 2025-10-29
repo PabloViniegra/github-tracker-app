@@ -89,7 +89,7 @@ export default function RepositoryCard({ repository, index = 0 }: RepositoryCard
               <h3 className="text-lg font-semibold text-foreground font-sans group-hover:text-foreground transition-colors line-clamp-1 flex-1">
                 {repository.name}
               </h3>
-              <div className="flex items-center gap-2 flex-shrink-0">
+              <div className="flex items-center gap-2 shrink-0">
                 {repository.private && (
                   <span
                     className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-muted text-muted-foreground border border-border"

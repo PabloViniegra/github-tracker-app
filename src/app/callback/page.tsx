@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Card, CardBody, Spinner } from "@heroui/react";
+import { Card, CardBody } from "@heroui/react";
 import { tokenStorage } from "@/lib/api";
 import { useAuth } from "@/contexts/AuthContext";
 import { CheckCircle, XCircle } from "lucide-react";
@@ -121,6 +121,7 @@ export default function CallbackPage() {
           throw new Error("Invalid token response");
         }
       } catch (err) {
+        console.error(err);
         setStatus("error");
         setErrorMessage(
           "Authentication failed. Could not retrieve tokens."

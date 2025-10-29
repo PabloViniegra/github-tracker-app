@@ -195,6 +195,18 @@
   }
 
   /* Skip link specific styling */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
   .sr-only:focus-visible,
   .sr-only:focus {
     position: absolute;
@@ -205,5 +217,83 @@
     overflow: visible;
     clip: auto;
     white-space: normal;
+  }
+}
+
+/* Keyboard navigation enhancements */
+@layer utilities {
+  /* Ensure keyboard users can see focused elements */
+  .focus-ring:focus-visible {
+    @apply ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Glassmorphic shiny text effect */
+@keyframes shine-glass {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@layer utilities {
+  .text-shiny {
+    position: relative;
+    color: var(--color-foreground);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Light mode glassmorphic effect */
+  .text-shiny:hover {
+    background: linear-gradient(
+      90deg,
+      oklch(0.2 0 0) 0%,
+      oklch(0.2 0 0) 30%,
+      oklch(0.45 0.08 250) 40%,
+      oklch(0.55 0.12 260) 50%,
+      oklch(0.45 0.08 250) 60%,
+      oklch(0.2 0 0) 70%,
+      oklch(0.2 0 0) 100%
+    );
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 8px rgba(100, 150, 255, 0.3));
+    animation: shine-glass 2s ease-in-out infinite;
+  }
+
+  /* Dark mode glassmorphic effect - more subtle and elegant */
+  .dark .text-shiny:hover {
+    background: linear-gradient(
+      90deg,
+      oklch(0.95 0 0) 0%,
+      oklch(0.95 0 0) 25%,
+      oklch(0.98 0.05 240) 40%,
+      oklch(1 0.08 250) 50%,
+      oklch(0.98 0.05 240) 60%,
+      oklch(0.95 0 0) 75%,
+      oklch(0.95 0 0) 100%
+    );
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 12px rgba(150, 180, 255, 0.4));
+    animation: shine-glass 2s ease-in-out infinite;
   }
 }

@@ -70,7 +70,7 @@ export default function Error({
               <Button
                 variant="bordered"
                 size="sm"
-                onClick={reset}
+                onPress={reset}
                 startContent={<RefreshCw className="w-4 h-4" />}
                 className="border-border text-foreground hover:bg-accent transition-colors"
               >
@@ -79,7 +79,7 @@ export default function Error({
               <Button
                 variant="light"
                 size="sm"
-                onClick={() => (window.location.href = "/")}
+                onPress={() => (window.location.href = "/")}
                 startContent={<Home className="w-4 h-4" />}
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >

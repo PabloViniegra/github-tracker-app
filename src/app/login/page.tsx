@@ -86,11 +86,7 @@ export default function LoginPage() {
    * 1. authorization_url (needs OAuth flow)
    * 2. tokens directly (already authorized)
    */
-  const handleGitHubLogin = async (e?: React.MouseEvent) => {
-    // Prevent any default behavior
-    e?.preventDefault();
-    e?.stopPropagation();
-
+  const handleGitHubLogin = async () => {
     console.log("[Login] Button clicked, starting login flow");
 
     setIsLoading(true);
@@ -318,7 +314,7 @@ export default function LoginPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.5 }}
-                  className="inline-block bg-gradient-to-r from-foreground via-muted-foreground to-foreground bg-clip-text text-transparent"
+                  className="inline-block bg-linear-to-r from-foreground via-muted-foreground to-foreground bg-clip-text text-transparent"
                 >
                   Activity Tracker
                 </motion.span>
@@ -383,7 +379,7 @@ export default function LoginPage() {
                   initial={{ opacity: 0 }}
                   whileHover={{ opacity: 1 }}
                   transition={{ duration: 0.3 }}
-                  className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 pointer-events-none"
+                  className="absolute inset-0 bg-linear-to-br from-primary/5 via-transparent to-accent/5 pointer-events-none"
                 />
 
                 <CardBody className="p-10 relative z-10">
@@ -491,14 +487,14 @@ export default function LoginPage() {
                             <Button
                               size="lg"
                               className="w-full bg-foreground text-background hover:bg-muted-foreground transition-all duration-300 font-semibold text-base py-6 relative overflow-hidden group"
-                              onClick={handleGitHubLogin}
+                              onPress={handleGitHubLogin}
                             >
                               {/* Button shine effect */}
                               <motion.div
                                 initial={{ x: "-100%" }}
                                 whileHover={{ x: "200%" }}
                                 transition={{ duration: 0.6 }}
-                                className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12"
+                                className="absolute inset-0 w-1/2 h-full bg-linearto-r from-transparent via-white/20 to-transparent skew-x-12"
                               />
                               <span className="flex items-center justify-center gap-2 relative z-10">
                                 <Github className="w-5 h-5" aria-hidden="true" />
@@ -560,7 +556,7 @@ export default function LoginPage() {
                                   animate={shouldReduceMotion ? {} : { rotate: [0, 10, -10, 0] }}
                                   transition={{ duration: 0.5, repeat: 2 }}
                                 >
-                                  <AlertCircle className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" aria-hidden="true" />
+                                  <AlertCircle className="w-5 h-5 text-destructive shrink-0 mt-0.5" aria-hidden="true" />
                                 </motion.div>
                                 <div>
                                   <p className="text-foreground font-semibold text-sm font-sans mb-1">
@@ -573,7 +569,7 @@ export default function LoginPage() {
                                     size="sm"
                                     variant="flat"
                                     className="mt-3 text-xs"
-                                    onClick={handleGitHubLogin}
+                                    onPress={handleGitHubLogin}
                                   >
                                     Try Again
                                   </Button>

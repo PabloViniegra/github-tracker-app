@@ -3,6 +3,7 @@
 import { useAuth } from "@/contexts/AuthContext";
 import { useState, useEffect } from "react";
 import { githubApi, GitHubUserDetails } from "@/lib/api";
+import PageHeader from "./shared/PageHeader";
 import {
   Card,
   CardBody,
@@ -17,7 +18,7 @@ import {
   LogOut,
   Github,
   Calendar,
-  CheckCircle,
+  BarChart3,
   XCircle,
   MapPin,
   Building2,
@@ -48,7 +49,7 @@ import { motion } from "framer-motion";
 export default function Dashboard() {
   const { user, logout, isLoading } = useAuth();
   const [githubDetails, setGithubDetails] = useState<GitHubUserDetails | null>(
-    null
+    null,
   );
   const [loadingGithub, setLoadingGithub] = useState(false);
 
@@ -98,33 +99,11 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <motion.header
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-        className="border-b border-border bg-background sticky top-0 z-50"
-      >
-        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-          <h1 className="text-xl font-semibold tracking-tight text-foreground font-sans">
-            GitHub Activity Tracker
-          </h1>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-          >
-            <Button
-              variant="light"
-              size="sm"
-              className="text-muted-foreground text-sm hover:text-foreground"
-              onPress={handleLogout}
-              startContent={<LogOut className="w-4 h-4" />}
-            >
-              Logout
-            </Button>
-          </motion.div>
-        </div>
-      </motion.header>
+      <PageHeader
+        title="GitHub Activity Tracker"
+        username={user?.username}
+        onLogout={handleLogout}
+      />
 
       <div className="max-w-6xl mx-auto px-6 py-8">
         {/* User Profile Card */}
@@ -135,168 +114,170 @@ export default function Dashboard() {
         >
           <Card className="border border-border bg-card shadow-sm mb-8">
             <CardBody className="p-8">
-            <div className="flex items-start gap-6">
-              <Avatar
-                src={user.avatar_url}
-                alt={user.username}
-                className="w-20 h-20 border-2 border-border"
-              />
+              <div className="flex items-start gap-6">
+                <Avatar
+                  src={user.avatar_url}
+                  alt={user.username}
+                  className="w-20 h-20 border-2 border-border"
+                />
 
-              <div className="flex-1">
-                <h2 className="text-2xl font-semibold mb-1 text-foreground font-sans">
-                  {user.name || user.username}
-                </h2>
+                <div className="flex-1">
+                  <h2 className="text-2xl font-semibold mb-1 text-foreground font-sans">
+                    {user.name || user.username}
+                  </h2>
 
-                <a
-                  href={user.profile_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1 font-mono mb-3"
-                >
-                  <Github className="w-3.5 h-3.5" />@{user.username}
-                </a>
+                  <a
+                    href={user.profile_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1 font-mono mb-3"
+                  >
+                    <Github className="w-3.5 h-3.5" />@{user.username}
+                  </a>
 
-                {/* Bio */}
-                {githubDetails?.bio && (
-                  <p className="text-sm text-foreground mt-3 font-sans">
-                    {githubDetails.bio}
-                  </p>
-                )}
-
-                {/* GitHub Info - Location, Company, Blog */}
-                <div className="flex flex-wrap gap-4 mt-3">
-                  {githubDetails?.location && (
-                    <span className="text-sm text-muted-foreground inline-flex items-center gap-1.5 font-sans">
-                      <MapPin className="w-4 h-4" />
-                      {githubDetails.location}
-                    </span>
+                  {/* Bio */}
+                  {githubDetails?.bio && (
+                    <p className="text-sm text-foreground mt-3 font-sans">
+                      {githubDetails.bio}
+                    </p>
                   )}
-                  {githubDetails?.company && (
-                    <span className="text-sm text-muted-foreground inline-flex items-center gap-1.5 font-sans">
-                      <Building2 className="w-4 h-4" />
-                      {githubDetails.company}
-                    </span>
-                  )}
-                  {githubDetails?.blog && (
-                    <a
-                      href={
-                        githubDetails.blog.startsWith("http")
-                          ? githubDetails.blog
-                          : `https://${githubDetails.blog}`
-                      }
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 font-sans transition-colors"
-                    >
-                      <LinkIcon className="w-4 h-4" />
-                      {githubDetails.blog}
-                    </a>
-                  )}
-                </div>
 
-                {/* GitHub Statistics */}
-                {githubDetails && (
-                  <div className="flex gap-6 mt-4 pt-4 border-t border-border">
-                    <div className="inline-flex items-center gap-2">
-                      <GitFork className="w-4 h-4 text-muted-foreground" />
-                      <span className="text-sm font-sans">
-                        <span className="font-semibold text-foreground">
-                          {githubDetails.public_repos}
-                        </span>
-                        <span className="text-muted-foreground ml-1">
-                          repositories
-                        </span>
+                  {/* GitHub Info - Location, Company, Blog */}
+                  <div className="flex flex-wrap gap-4 mt-3">
+                    {githubDetails?.location && (
+                      <span className="text-sm text-muted-foreground inline-flex items-center gap-1.5 font-sans">
+                        <MapPin className="w-4 h-4" />
+                        {githubDetails.location}
                       </span>
-                    </div>
-                    <div className="inline-flex items-center gap-2">
-                      <Users className="w-4 h-4 text-muted-foreground" />
-                      <span className="text-sm font-sans">
-                        <span className="font-semibold text-foreground">
-                          {githubDetails.followers}
-                        </span>
-                        <span className="text-muted-foreground ml-1">
-                          followers
-                        </span>
+                    )}
+                    {githubDetails?.company && (
+                      <span className="text-sm text-muted-foreground inline-flex items-center gap-1.5 font-sans">
+                        <Building2 className="w-4 h-4" />
+                        {githubDetails.company}
                       </span>
-                    </div>
-                    <div className="inline-flex items-center gap-2">
-                      <span className="text-sm font-sans">
-                        <span className="font-semibold text-foreground">
-                          {githubDetails.following}
-                        </span>
-                        <span className="text-muted-foreground ml-1">
-                          following
-                        </span>
-                      </span>
-                    </div>
+                    )}
+                    {githubDetails?.blog && (
+                      <a
+                        href={
+                          githubDetails.blog.startsWith("http")
+                            ? githubDetails.blog
+                            : `https://${githubDetails.blog}`
+                        }
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 font-sans transition-colors"
+                      >
+                        <LinkIcon className="w-4 h-4" />
+                        {githubDetails.blog}
+                      </a>
+                    )}
                   </div>
-                )}
 
-                {/* Metadata Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-6 pt-6 border-t border-border">
-                  {githubDetails?.created_at && (
+                  {/* GitHub Statistics */}
+                  {githubDetails && (
+                    <div className="flex gap-6 mt-4 pt-4 border-t border-border">
+                      <div className="inline-flex items-center gap-2">
+                        <GitFork className="w-4 h-4 text-muted-foreground" />
+                        <span className="text-sm font-sans">
+                          <span className="font-semibold text-foreground">
+                            {githubDetails.public_repos}
+                          </span>
+                          <span className="text-muted-foreground ml-1">
+                            repositories
+                          </span>
+                        </span>
+                      </div>
+                      <div className="inline-flex items-center gap-2">
+                        <Users className="w-4 h-4 text-muted-foreground" />
+                        <span className="text-sm font-sans">
+                          <span className="font-semibold text-foreground">
+                            {githubDetails.followers}
+                          </span>
+                          <span className="text-muted-foreground ml-1">
+                            followers
+                          </span>
+                        </span>
+                      </div>
+                      <div className="inline-flex items-center gap-2">
+                        <span className="text-sm font-sans">
+                          <span className="font-semibold text-foreground">
+                            {githubDetails.following}
+                          </span>
+                          <span className="text-muted-foreground ml-1">
+                            following
+                          </span>
+                        </span>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Metadata Grid */}
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-6 pt-6 border-t border-border">
+                    {githubDetails?.created_at && (
+                      <div>
+                        <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1 font-sans">
+                          GitHub Member Since
+                        </p>
+                        <p className="text-sm font-mono text-foreground">
+                          {new Date(
+                            githubDetails.created_at,
+                          ).toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "long",
+                          })}
+                        </p>
+                      </div>
+                    )}
+
+                    {user.email && (
+                      <div>
+                        <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1 font-sans">
+                          Email
+                        </p>
+                        <p className="text-sm font-mono text-foreground">
+                          {user.email}
+                        </p>
+                      </div>
+                    )}
+
                     <div>
                       <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1 font-sans">
-                        GitHub Member Since
+                        GitHub ID
                       </p>
                       <p className="text-sm font-mono text-foreground">
-                        {new Date(githubDetails.created_at).toLocaleDateString(
-                          "en-US",
-                          { year: "numeric", month: "long" }
-                        )}
+                        {user.github_id}
                       </p>
                     </div>
-                  )}
 
-                  {user.email && (
                     <div>
                       <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1 font-sans">
-                        Email
+                        App Registered
                       </p>
                       <p className="text-sm font-mono text-foreground">
-                        {user.email}
+                        {new Date(user.created_at).toLocaleDateString()}
                       </p>
                     </div>
-                  )}
 
-                  <div>
-                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1 font-sans">
-                      GitHub ID
-                    </p>
-                    <p className="text-sm font-mono text-foreground">
-                      {user.github_id}
-                    </p>
-                  </div>
-
-                  <div>
-                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1 font-sans">
-                      App Registered
-                    </p>
-                    <p className="text-sm font-mono text-foreground">
-                      {new Date(user.created_at).toLocaleDateString()}
-                    </p>
-                  </div>
-
-                  <div>
-                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1 font-sans">
-                      Webhook Status
-                    </p>
-                    <span className="text-sm inline-flex items-center gap-1.5 text-foreground font-sans">
-                      <span
-                        className={`w-1.5 h-1.5 rounded-full ${
-                          user.webhook_configured
-                            ? "bg-foreground"
-                            : "bg-muted-foreground"
-                        }`}
-                      />
-                      {user.webhook_configured ? "Active" : "Inactive"}
-                    </span>
+                    <div>
+                      <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1 font-sans">
+                        Webhook Status
+                      </p>
+                      <span className="text-sm inline-flex items-center gap-1.5 text-foreground font-sans">
+                        <span
+                          className={`w-1.5 h-1.5 rounded-full ${
+                            user.webhook_configured
+                              ? "bg-foreground"
+                              : "bg-muted-foreground"
+                          }`}
+                        />
+                        {user.webhook_configured ? "Active" : "Inactive"}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </CardBody>
-        </Card>
+            </CardBody>
+          </Card>
         </motion.div>
 
         {/* Quick Actions */}
@@ -317,7 +298,7 @@ export default function Dashboard() {
                       Repositories
                     </h3>
                     <p className="text-sm text-muted-foreground font-serif">
-                      View and manage repos
+                      View repositories
                     </p>
                   </div>
                 </div>
@@ -353,25 +334,24 @@ export default function Dashboard() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3, delay: 0.3, ease: "easeOut" }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
-            <Tooltip content="Coming soon..." placement="top">
-              <button
-                disabled
-                className="group border border-border bg-card opacity-60 cursor-not-allowed transition-all p-6 rounded-lg text-left h-full w-full"
-              >
+            <Link href="/analytics">
+              <button className="group border border-border bg-card hover:bg-accent hover:border-foreground transition-all p-6 rounded-lg text-left w-full h-full">
                 <div className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-muted-foreground" />
+                  <BarChart3 className="w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors" />
                   <div>
                     <h3 className="font-medium mb-1 text-foreground font-sans">
-                      Notifications
+                      Analytics
                     </h3>
                     <p className="text-sm text-muted-foreground font-serif">
-                      Webhook alerts
+                      View insights
                     </p>
                   </div>
                 </div>
               </button>
-            </Tooltip>
+            </Link>
           </motion.div>
         </div>
       </div>

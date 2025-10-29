@@ -99,7 +99,7 @@ export class ErrorBoundary extends Component<
                   <Button
                     variant="bordered"
                     size="sm"
-                    onClick={this.handleReset}
+                    onPress={this.handleReset}
                     startContent={<RefreshCw className="w-4 h-4" />}
                     className="border-border text-foreground hover:bg-accent"
                   >
@@ -108,7 +108,7 @@ export class ErrorBoundary extends Component<
                   <Button
                     variant="light"
                     size="sm"
-                    onClick={() => (window.location.href = "/")}
+                    onPress={() => (window.location.href = "/")}
                     className="text-muted-foreground hover:text-foreground"
                   >
                     Go home

@@ -153,9 +153,8 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="es" className="dark">
+    <html lang="en" className="dark">
       <head>
-        {/* JSON-LD Structured Data */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
