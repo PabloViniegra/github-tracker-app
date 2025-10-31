@@ -5,7 +5,7 @@
 
 import { GitHubEventsResponse } from '@/types/github';
 
-const API_BASE_URL = 'http://localhost:8000/api/v1';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000/api/v1';
 
 // Token storage keys
 const ACCESS_TOKEN_KEY = 'access_token';
@@ -327,6 +327,7 @@ async function refreshAccessToken(): Promise<void> {
       }
     } catch (error) {
       // If refresh fails, clear tokens and redirect to login
+      console.error(error);
       tokenStorage.clearTokens();
 
       // Redirect to login on client side
