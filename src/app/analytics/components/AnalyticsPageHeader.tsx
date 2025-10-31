@@ -13,8 +13,8 @@ import { motion } from "framer-motion";
 
 interface AnalyticsPageHeaderProps {
   username?: string;
-  preset: '7d' | '30d' | '90d' | '1y';
-  onPresetChange: (preset: '7d' | '30d' | '90d' | '1y') => void;
+  preset: '7d' | '30d' | '90d' | '1y' | 'all';
+  onPresetChange: (preset: '7d' | '30d' | '90d' | '1y' | 'all') => void;
   onRefresh: () => void;
   onLogout: () => void;
   isRefreshing: boolean;

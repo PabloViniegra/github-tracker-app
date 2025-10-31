@@ -41,6 +41,26 @@ export function useRepositorySearch({
   const [filteredRepositories, setFilteredRepositories] = useState<Repository[]>(repositories);
   const debounceTimer = useRef<NodeJS.Timeout | null>(null);
 
+  // Handle search function - memoized with useCallback
+  const handleSearch = useCallback((query: string) => {
+    const normalizedQuery = query.toLowerCase().trim();
+
+    if (!normalizedQuery) {
+      setFilteredRepositories(repositories);
+      return;
+    }
+
+    // Filter repositories by name, description, or language
+    const filtered = repositories.filter((repo) => {
+      const nameMatch = repo.name.toLowerCase().includes(normalizedQuery);
+      const descMatch = repo.description?.toLowerCase().includes(normalizedQuery) || false;
+      const languageMatch = repo.language?.toLowerCase().includes(normalizedQuery) || false;
+      return nameMatch || descMatch || languageMatch;
+    });
+
+    setFilteredRepositories(filtered);
+  }, [repositories]);
+
   // Update filtered repos when source repositories change
   useEffect(() => {
     if (!searchQuery) {
@@ -63,26 +83,7 @@ export function useRepositorySearch({
         clearTimeout(debounceTimer.current);
       }
     };
-  }, [searchQuery, repositories, debounceMs]);
-
-  const handleSearch = useCallback((query: string) => {
-    const normalizedQuery = query.toLowerCase().trim();
-
-    if (!normalizedQuery) {
-      setFilteredRepositories(repositories);
-      return;
-    }
-
-    // Filter repositories by name, description, or language
-    const filtered = repositories.filter((repo) => {
-      const nameMatch = repo.name.toLowerCase().includes(normalizedQuery);
-      const descMatch = repo.description?.toLowerCase().includes(normalizedQuery) || false;
-      const languageMatch = repo.language?.toLowerCase().includes(normalizedQuery) || false;
-      return nameMatch || descMatch || languageMatch;
-    });
-
-    setFilteredRepositories(filtered);
-  }, [repositories]);
+  }, [searchQuery, repositories, debounceMs, handleSearch]);
 
   return {
     searchQuery,

@@ -17,10 +17,10 @@ import { cookies } from "next/headers";
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
 
-  // Extract tokens and state from URL
+  // Extract tokens from URL
   const accessToken = searchParams.get("access_token");
   const refreshToken = searchParams.get("refresh_token");
-  const state = searchParams.get("state");
+  // const state = searchParams.get("state"); // TODO: Implement CSRF validation
   const error = searchParams.get("error");
 
   // Handle error case

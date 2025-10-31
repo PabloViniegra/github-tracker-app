@@ -327,7 +327,7 @@ export function processLanguageBreakdown(
 
       // Estimate bytes (GitHub doesn't provide exact language bytes in basic API)
       // Use a rough estimate based on repo size
-      const estimatedBytes = repo.size * 1024; // size is in KB
+      const estimatedBytes = (repo.size || 0) * 1024; // size is in KB
 
       existing.bytes += estimatedBytes;
       existing.repos.add(repo.full_name);

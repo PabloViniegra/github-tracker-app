@@ -7,25 +7,17 @@ import PageHeader from "./shared/PageHeader";
 import {
   Card,
   CardBody,
-  CardHeader,
-  Button,
   Avatar,
-  Chip,
-  Divider,
-  Tooltip,
 } from "@heroui/react";
 import {
-  LogOut,
   Github,
   Calendar,
   BarChart3,
-  XCircle,
   MapPin,
   Building2,
   Link as LinkIcon,
   Users,
   GitFork,
-  Star,
 } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -51,12 +43,10 @@ export default function Dashboard() {
   const [githubDetails, setGithubDetails] = useState<GitHubUserDetails | null>(
     null,
   );
-  const [loadingGithub, setLoadingGithub] = useState(false);
 
   // Fetch GitHub details when user is available
   useEffect(() => {
     if (user?.username) {
-      setLoadingGithub(true);
       githubApi
         .getUserDetails(user.username)
         .then((details) => {
@@ -64,9 +54,6 @@ export default function Dashboard() {
         })
         .catch((error) => {
           console.error("Failed to fetch GitHub details:", error);
-        })
-        .finally(() => {
-          setLoadingGithub(false);
         });
     }
   }, [user?.username]);

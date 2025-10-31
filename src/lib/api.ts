@@ -110,6 +110,13 @@ export interface Repository {
   updated_at: string;
   forks_count?: number;
   watchers_count?: number;
+  size?: number;
+  owner: {
+    login: string;
+    id: number;
+    avatar_url: string;
+    html_url: string;
+  };
 }
 
 export interface RepositoriesResponse {
