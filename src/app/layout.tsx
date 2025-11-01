@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Anonymous_Pro, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-sans",
@@ -167,7 +168,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${anonymousPro.variable} ${spaceGrotesk.variable} antialiased`}
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

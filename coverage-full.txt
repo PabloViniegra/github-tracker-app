@@ -1,0 +1,604 @@
+
+> github-tracker-app@0.1.0 test:coverage C:\Users\pabli\Documents\projects\github-tracker-app
+> vitest --coverage
+
+
+[1m[46m RUN [49m[22m [36mv4.0.5 [39m[90mC:/Users/pabli/Documents/projects/github-tracker-app[39m
+      [2mCoverage enabled with [22m[33mv8[39m
+
+ [32m✓[39m src/contexts/AuthContext.test.tsx[2m > [22mAuthContext[2m > [22museAuth hook[2m > [22mshould throw error when used outside AuthProvider[32m 61[2mms[22m[39m
+ [32m✓[39m src/contexts/AuthContext.test.tsx[2m > [22mAuthContext[2m > [22museAuth hook[2m > [22mshould provide auth context when used within AuthProvider[32m 24[2mms[22m[39m
+ [32m✓[39m src/contexts/AuthContext.test.tsx[2m > [22mAuthContext[2m > [22mAuthProvider[2m > [22mshould initialize with loading state[32m 25[2mms[22m[39m
+ [32m✓[39m src/contexts/AuthContext.test.tsx[2m > [22mAuthContext[2m > [22mAuthProvider[2m > [22mshould set loading to false when no tokens exist[32m 8[2mms[22m[39m
+[90mstdout[2m | src/contexts/AuthContext.test.tsx[2m > [22m[2mAuthContext[2m > [22m[2mAuthProvider[2m > [22m[2mshould clear tokens on auth error
+[22m[39m[AuthContext] Session expired, clearing tokens
+
+ [32m✓[39m src/contexts/AuthContext.test.tsx[2m > [22mAuthContext[2m > [22mAuthProvider[2m > [22mshould load user profile on mount when tokens exist[32m 118[2mms[22m[39m
+ [32m✓[39m src/contexts/AuthContext.test.tsx[2m > [22mAuthContext[2m > [22mAuthProvider[2m > [22mshould clear tokens on auth error[32m 127[2mms[22m[39m
+ [32m✓[39m src/contexts/AuthContext.test.tsx[2m > [22mAuthContext[2m > [22mAuthProvider[2m > [22mshould handle non-auth errors[32m 78[2mms[22m[39m
+ [32m✓[39m src/contexts/AuthContext.test.tsx[2m > [22mAuthContext[2m > [22mlogin function[2m > [22mshould redirect to login page[32m 5[2mms[22m[39m
+ [32m✓[39m src/contexts/AuthContext.test.tsx[2m > [22mAuthContext[2m > [22mlogout function[2m > [22mshould call logout API and clear tokens[32m 74[2mms[22m[39m
+ [32m✓[39m src/contexts/AuthContext.test.tsx[2m > [22mAuthContext[2m > [22mlogout function[2m > [22mshould clear local state even if API call fails[32m 78[2mms[22m[39m
+ [32m✓[39m src/contexts/AuthContext.test.tsx[2m > [22mAuthContext[2m > [22mlogout function[2m > [22mshould update user state to null after logout[32m 94[2mms[22m[39m
+ [32m✓[39m src/contexts/AuthContext.test.tsx[2m > [22mAuthContext[2m > [22mrefreshUser function[2m > [22mshould reload user profile[32m 111[2mms[22m[39m
+ [32m✓[39m src/contexts/AuthContext.test.tsx[2m > [22mAuthContext[2m > [22mrefreshUser function[2m > [22mshould set loading state during refresh[32m 134[2mms[22m[39m
+ [32m✓[39m src/contexts/AuthContext.test.tsx[2m > [22mAuthContext[2m > [22misAuthenticated[2m > [22mshould be true when user exists[32m 91[2mms[22m[39m
+ [32m✓[39m src/contexts/AuthContext.test.tsx[2m > [22mAuthContext[2m > [22misAuthenticated[2m > [22mshould be false when user is null[32m 12[2mms[22m[39m
+ [32m✓[39m src/hooks/useRepositorySearch.test.ts[2m > [22museRepositorySearch[2m > [22mInitial State[2m > [22mshould return all repositories initially[32m 52[2mms[22m[39m
+ [32m✓[39m src/hooks/useRepositorySearch.test.ts[2m > [22museRepositorySearch[2m > [22mInitial State[2m > [22mshould handle empty repository list[32m 5[2mms[22m[39m
+ [2m[90m↓[39m[22m src/hooks/useRepositorySearch.test.ts[2m > [22museRepositorySearch[2m > [22mSearch Functionality[2m > [22mshould filter repositories by name
+ [2m[90m↓[39m[22m src/hooks/useRepositorySearch.test.ts[2m > [22museRepositorySearch[2m > [22mSearch Functionality[2m > [22mshould filter repositories by description
+ [2m[90m↓[39m[22m src/hooks/useRepositorySearch.test.ts[2m > [22museRepositorySearch[2m > [22mSearch Functionality[2m > [22mshould filter repositories by language
+ [32m✓[39m src/hooks/useRepositorySearch.test.ts[2m > [22museRepositorySearch[2m > [22mSearch Functionality[2m > [22mshould be case-insensitive[32m 48[2mms[22m[39m
+ [2m[90m↓[39m[22m src/hooks/useRepositorySearch.test.ts[2m > [22museRepositorySearch[2m > [22mSearch Functionality[2m > [22mshould handle search with no results
+ [2m[90m↓[39m[22m src/hooks/useRepositorySearch.test.ts[2m > [22museRepositorySearch[2m > [22mSearch Functionality[2m > [22mshould return all repos when search query is empty
+ [32m✓[39m src/hooks/useRepositorySearch.test.ts[2m > [22museRepositorySearch[2m > [22mSearch Functionality[2m > [22mshould trim whitespace from search query[32m 29[2mms[22m[39m
+ [32m✓[39m src/hooks/useRepositorySearch.test.ts[2m > [22museRepositorySearch[2m > [22mDebouncing[2m > [22mshould debounce search by default 500ms[32m 38[2mms[22m[39m
+ [32m✓[39m src/hooks/useRepositorySearch.test.ts[2m > [22museRepositorySearch[2m > [22mDebouncing[2m > [22mshould use custom debounce delay[32m 61[2mms[22m[39m
+ [32m✓[39m src/hooks/useRepositorySearch.test.ts[2m > [22museRepositorySearch[2m > [22mDebouncing[2m > [22mshould reset debounce timer on rapid typing[32m 81[2mms[22m[39m
+ [32m✓[39m src/hooks/useRepositorySearch.test.ts[2m > [22museRepositorySearch[2m > [22mDebouncing[2m > [22mshould cleanup debounce timer on unmount[32m 19[2mms[22m[39m
+ [32m✓[39m src/hooks/useRepositorySearch.test.ts[2m > [22museRepositorySearch[2m > [22mRepository Updates[2m > [22mshould update filtered results when repositories change[32m 10[2mms[22m[39m
+ [2m[90m↓[39m[22m src/hooks/useRepositorySearch.test.ts[2m > [22museRepositorySearch[2m > [22mRepository Updates[2m > [22mshould re-filter when repositories change with active search
+ [2m[90m↓[39m[22m src/hooks/useRepositorySearch.test.ts[2m > [22museRepositorySearch[2m > [22mEdge Cases[2m > [22mshould handle repositories without description
+ [2m[90m↓[39m[22m src/hooks/useRepositorySearch.test.ts[2m > [22museRepositorySearch[2m > [22mEdge Cases[2m > [22mshould handle repositories without language
+ [32m✓[39m src/hooks/useRepositorySearch.test.ts[2m > [22museRepositorySearch[2m > [22mEdge Cases[2m > [22mshould handle special characters in search[32m 23[2mms[22m[39m
+ [32m✓[39m src/hooks/useRepositorySearch.test.ts[2m > [22museRepositorySearch[2m > [22mReturn Values[2m > [22mshould return all expected properties[32m 9[2mms[22m[39m
+ [32m✓[39m src/hooks/useRepositorySearch.test.ts[2m > [22museRepositorySearch[2m > [22mReturn Values[2m > [22mshould return setSearchQuery as a function[32m 7[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingSpinner[2m > [22mshould render spinner with default size[32m 109[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingSpinner[2m > [22mshould render small spinner[32m 13[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingSpinner[2m > [22mshould render large spinner[32m 7[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingSpinner[2m > [22mshould apply correct border classes[32m 8[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingCard[2m > [22mshould render default loading message[32m 126[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingCard[2m > [22mshould render custom message[32m 17[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingCard[2m > [22mshould render spinner[32m 11[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingCard[2m > [22mshould be centered on screen[32m 12[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingCard[2m > [22mshould render inside a Card component[32m 16[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingCard[2m > [22mshould use large spinner[32m 16[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingInline[2m > [22mshould render spinner without message by default[32m 50[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingInline[2m > [22mshould render with custom message[32m 9[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingInline[2m > [22mshould use medium spinner[32m 10[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingInline[2m > [22mshould be centered within container[32m 48[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingInline[2m > [22mshould have vertical spacing[32m 11[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingSkeleton[2m > [22mshould render single skeleton by default[32m 29[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingSkeleton[2m > [22mshould render multiple skeletons[32m 28[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingSkeleton[2m > [22mshould apply custom className[32m 7[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingSkeleton[2m > [22mshould have pulse animation[32m 9[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingSkeleton[2m > [22mshould have muted background[32m 15[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingSkeleton[2m > [22mshould be rounded[32m 7[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingDashboardSkeleton[2m > [22mshould render header skeleton[32m 48[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingDashboardSkeleton[2m > [22mshould render profile card skeleton[32m 41[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingDashboardSkeleton[2m > [22mshould render stats skeletons[32m 106[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingDashboardSkeleton[2m > [22mshould render metadata grid skeletons[32m 35[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingDashboardSkeleton[2m > [22mshould render quick actions skeletons[32m 43[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingDashboardSkeleton[2m > [22mshould have full screen height[32m 53[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingDashboardSkeleton[2m > [22mshould have proper max width[32m 50[2mms[22m[39m
+ [32m✓[39m src/components/RepositoryCardSkeleton.test.tsx[2m > [22mRepositoryCardSkeleton[2m > [22mshould render skeleton structure[32m 191[2mms[22m[39m
+ [32m✓[39m src/components/RepositoryCardSkeleton.test.tsx[2m > [22mRepositoryCardSkeleton[2m > [22mshould render repository name skeleton[32m 19[2mms[22m[39m
+ [32m✓[39m src/components/RepositoryCardSkeleton.test.tsx[2m > [22mRepositoryCardSkeleton[2m > [22mshould render description skeletons[32m 73[2mms[22m[39m
+ [32m✓[39m src/components/RepositoryCardSkeleton.test.tsx[2m > [22mRepositoryCardSkeleton[2m > [22mshould render language badge skeleton[32m 67[2mms[22m[39m
+ [32m✓[39m src/components/RepositoryCardSkeleton.test.tsx[2m > [22mRepositoryCardSkeleton[2m > [22mshould render stats skeletons[32m 16[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingDashboardSkeleton[2m > [22mshould render all skeleton elements with pulse animation[32m 139[2mms[22m[39m
+ [32m✓[39m src/components/RepositoryCardSkeleton.test.tsx[2m > [22mRepositoryCardSkeleton[2m > [22mshould have pulse animation on all skeletons[32m 21[2mms[22m[39m
+ [32m✓[39m src/components/RepositoryCardSkeleton.test.tsx[2m > [22mRepositoryCardSkeleton[2m > [22mshould have muted background on skeletons[32m 18[2mms[22m[39m
+ [32m✓[39m src/components/RepositoryCardSkeleton.test.tsx[2m > [22mRepositoryCardSkeleton[2m > [22mshould have proper spacing between elements[32m 16[2mms[22m[39m
+ [32m✓[39m src/components/RepositoryCardSkeleton.test.tsx[2m > [22mRepositoryCardSkeleton[2m > [22mshould have proper card padding[32m 36[2mms[22m[39m
+ [32m✓[39m src/components/RepositoryCardSkeleton.test.tsx[2m > [22mRepositoryCardSkeleton[2m > [22mshould have flex layout for stats row[32m 14[2mms[22m[39m
+ [32m✓[39m src/components/Loading.test.tsx[2m > [22mLoadingDashboardSkeleton[2m > [22mshould have border styling[32m 123[2mms[22m[39m
+ [32m✓[39m src/components/RepositoryCardSkeleton.test.tsx[2m > [22mRepositoryCardSkeleton[2m > [22mshould have gap between stat items[32m 24[2mms[22m[39m
+ [32m✓[39m src/components/RepositoryCardSkeleton.test.tsx[2m > [22mRepositoryCardSkeleton[2m > [22mshould match RepositoryCard structure[32m 19[2mms[22m[39m
+ [32m✓[39m src/components/RepositoryCardSkeleton.test.tsx[2m > [22mRepositoryCardSkeleton[2m > [22mshould render all skeleton elements with rounded corners[32m 17[2mms[22m[39m
+ [32m✓[39m src/components/RepositoryCardSkeleton.test.tsx[2m > [22mRepositoryCardSkeleton[2m > [22mshould have proper spacing with pt-2 for stats section[32m 43[2mms[22m[39m
+ [32m✓[39m src/components/events/EventIcon.test.tsx[2m > [22mEventIcon[2m > [22mshould render icon for PushEvent[32m 175[2mms[22m[39m
+ [32m✓[39m src/components/events/EventIcon.test.tsx[2m > [22mEventIcon[2m > [22mshould render icon for PullRequestEvent[32m 29[2mms[22m[39m
+ [32m✓[39m src/components/events/EventIcon.test.tsx[2m > [22mEventIcon[2m > [22mshould render icon for IssuesEvent[32m 19[2mms[22m[39m
+ [32m✓[39m src/components/events/EventIcon.test.tsx[2m > [22mEventIcon[2m > [22mshould render merged icon for merged pull request[32m 19[2mms[22m[39m
+ [32m✓[39m src/components/events/EventIcon.test.tsx[2m > [22mEventIcon[2m > [22mshould apply correct color based on event type[33m 507[2mms[22m[39m
+ [32m✓[39m src/components/events/EventIcon.test.tsx[2m > [22mEventIcon[2m > [22mshould render icon for CreateEvent[32m 16[2mms[22m[39m
+ [32m✓[39m src/components/events/EventIcon.test.tsx[2m > [22mEventIcon[2m > [22mshould render icon for DeleteEvent[32m 17[2mms[22m[39m
+ [32m✓[39m src/components/events/EventIcon.test.tsx[2m > [22mEventIcon[2m > [22mshould render icon for ForkEvent[32m 22[2mms[22m[39m
+ [32m✓[39m src/components/events/EventIcon.test.tsx[2m > [22mEventIcon[2m > [22mshould render icon for WatchEvent[32m 10[2mms[22m[39m
+ [32m✓[39m src/components/events/EventIcon.test.tsx[2m > [22mEventIcon[2m > [22mshould render icon for ReleaseEvent[32m 22[2mms[22m[39m
+ [32m✓[39m src/components/events/EventIcon.test.tsx[2m > [22mEventIcon[2m > [22mshould accept custom size prop[32m 13[2mms[22m[39m
+ [32m✓[39m src/components/events/EventIcon.test.tsx[2m > [22mEventIcon[2m > [22mshould use default size when not specified[32m 17[2mms[22m[39m
+ [32m✓[39m src/components/events/EventIcon.test.tsx[2m > [22mEventIcon[2m > [22mshould apply flex-shrink-0 class[32m 50[2mms[22m[39m
+ [32m✓[39m src/components/events/EventIcon.test.tsx[2m > [22mEventIcon[2m > [22mshould render fallback icon for unknown event types[32m 19[2mms[22m[39m
+ [32m✓[39m src/components/events/EmptyState.test.tsx[2m > [22mEmptyState[2m > [22mshould render empty state message[33m 337[2mms[22m[39m
+ [32m✓[39m src/components/events/EmptyState.test.tsx[2m > [22mEmptyState[2m > [22mshould render icon[32m 50[2mms[22m[39m
+ [32m✓[39m src/components/events/EmptyState.test.tsx[2m > [22mEmptyState[2m > [22mshould not render retry button when onRetry is not provided[32m 22[2mms[22m[39m
+ [31m×[39m src/components/shared/PageHeader.test.tsx[2m > [22mPageHeader[2m > [22mshould render title[32m 64[2mms[22m[39m
+[31m   → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `Wrapper`.[39m
+ [31m×[39m src/components/shared/PageHeader.test.tsx[2m > [22mPageHeader[2m > [22mshould render subtitle when provided[32m 62[2mms[22m[39m
+[31m   → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `Wrapper`.[39m
+ [31m×[39m src/components/shared/PageHeader.test.tsx[2m > [22mPageHeader[2m > [22mshould render username when provided[32m 15[2mms[22m[39m
+[31m   → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `Wrapper`.[39m
+ [31m×[39m src/components/shared/PageHeader.test.tsx[2m > [22mPageHeader[2m > [22mshould render logout button[32m 6[2mms[22m[39m
+[31m   → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `Wrapper`.[39m
+ [31m×[39m src/components/shared/PageHeader.test.tsx[2m > [22mPageHeader[2m > [22mshould call onLogout when logout button is clicked[32m 12[2mms[22m[39m
+[31m   → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `Wrapper`.[39m
+ [31m×[39m src/components/shared/PageHeader.test.tsx[2m > [22mPageHeader[2m > [22mshould not render back button by default[32m 7[2mms[22m[39m
+[31m   → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `Wrapper`.[39m
+ [31m×[39m src/components/shared/PageHeader.test.tsx[2m > [22mPageHeader[2m > [22mshould render back button when showBackButton is true[32m 9[2mms[22m[39m
+[31m   → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `Wrapper`.[39m
+ [31m×[39m src/components/shared/PageHeader.test.tsx[2m > [22mPageHeader[2m > [22mshould link back button to default href[32m 7[2mms[22m[39m
+[31m   → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `Wrapper`.[39m
+ [31m×[39m src/components/shared/PageHeader.test.tsx[2m > [22mPageHeader[2m > [22mshould link back button to custom href[32m 10[2mms[22m[39m
+[31m   → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `Wrapper`.[39m
+ [32m✓[39m src/components/events/EventIcon.test.tsx[2m > [22mEventIcon[2m > [22mshould handle IssueCommentEvent[32m 15[2mms[22m[39m
+ [32m✓[39m src/components/events/EventIcon.test.tsx[2m > [22mEventIcon[2m > [22mshould handle CommitCommentEvent[32m 16[2mms[22m[39m
+ [32m✓[39m src/components/events/EventIcon.test.tsx[2m > [22mEventIcon[2m > [22mshould handle PublicEvent[32m 12[2mms[22m[39m
+ [32m✓[39m src/components/events/EventIcon.test.tsx[2m > [22mEventIcon[2m > [22mshould handle MemberEvent[32m 21[2mms[22m[39m
+ [32m✓[39m src/components/events/EventIcon.test.tsx[2m > [22mEventIcon[2m > [22mshould handle GollumEvent[32m 10[2mms[22m[39m
+ [31m×[39m src/components/shared/PageHeader.test.tsx[2m > [22mPageHeader[2m > [22mshould render custom actions[32m 84[2mms[22m[39m
+[31m   → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `Wrapper`.[39m
+ [31m×[39m src/components/shared/PageHeader.test.tsx[2m > [22mPageHeader[2m > [22mshould apply default maxWidth class[32m 65[2mms[22m[39m
+[31m   → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `Wrapper`.[39m
+ [31m×[39m src/components/shared/PageHeader.test.tsx[2m > [22mPageHeader[2m > [22mshould apply custom maxWidth class[32m 15[2mms[22m[39m
+[31m   → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `Wrapper`.[39m
+ [31m×[39m src/components/shared/PageHeader.test.tsx[2m > [22mPageHeader[2m > [22mshould have sticky positioning[32m 6[2mms[22m[39m
+[31m   → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `Wrapper`.[39m
+ [31m×[39m src/components/shared/PageHeader.test.tsx[2m > [22mPageHeader[2m > [22mshould have border bottom[32m 5[2mms[22m[39m
+[31m   → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `Wrapper`.[39m
+ [31m×[39m src/components/shared/PageHeader.test.tsx[2m > [22mPageHeader[2m > [22mshould have backdrop blur[32m 6[2mms[22m[39m
+[31m   → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `Wrapper`.[39m
+ [32m✓[39m src/components/events/EmptyState.test.tsx[2m > [22mEmptyState[2m > [22mshould render retry button when onRetry is provided[33m 1018[2mms[22m[39m
+ [31m×[39m src/components/shared/PageHeader.test.tsx[2m > [22mPageHeader[2m > [22mshould render title with proper styling[32m 73[2mms[22m[39m
+[31m   → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `Wrapper`.[39m
+ [31m×[39m src/components/shared/PageHeader.test.tsx[2m > [22mPageHeader[2m > [22mshould render subtitle with proper styling[32m 22[2mms[22m[39m
+[31m   → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `Wrapper`.[39m
+ [31m×[39m src/components/shared/PageHeader.test.tsx[2m > [22mPageHeader[2m > [22mshould render username with proper styling[32m 7[2mms[22m[39m
+[31m   → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `Wrapper`.[39m
+ [31m×[39m src/components/shared/PageHeader.test.tsx[2m > [22mPageHeader[2m > [22mshould render all three text elements when provided[32m 16[2mms[22m[39m
+[31m   → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `Wrapper`.[39m
+ [31m×[39m src/components/shared/PageHeader.test.tsx[2m > [22mPageHeader[2m > [22mshould render logout button with icon[32m 12[2mms[22m[39m
+[31m   → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `Wrapper`.[39m
+ [31m×[39m src/components/shared/PageHeader.test.tsx[2m > [22mPageHeader[2m > [22mshould render back button with icon[32m 14[2mms[22m[39m
+[31m   → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `Wrapper`.[39m
+ [31m×[39m src/components/shared/PageHeader.test.tsx[2m > [22mPageHeader[2m > [22mshould have proper horizontal spacing[32m 7[2mms[22m[39m
+[31m   → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `Wrapper`.[39m
+ [31m×[39m src/components/shared/PageHeader.test.tsx[2m > [22mPageHeader[2m > [22mshould have flex layout for header content[32m 8[2mms[22m[39m
+[31m   → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `Wrapper`.[39m
+ [31m×[39m src/components/shared/PageHeader.test.tsx[2m > [22mPageHeader[2m > [22mshould group actions and logout button together[32m 6[2mms[22m[39m
+[31m   → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `Wrapper`.[39m
+ [31m×[39m src/components/shared/PageHeader.test.tsx[2m > [22mPageHeader[2m > [22mshould memoize component for performance[32m 14[2mms[22m[39m
+[31m   → Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check the render method of `Wrapper`.[39m
+ [32m✓[39m src/components/events/EmptyState.test.tsx[2m > [22mEmptyState[2m > [22mshould call onRetry when retry button is clicked[33m 718[2mms[22m[39m
+ [32m✓[39m src/components/events/EmptyState.test.tsx[2m > [22mEmptyState[2m > [22mshould render tip section[32m 61[2mms[22m[39m
+ [32m✓[39m src/components/events/EmptyState.test.tsx[2m > [22mEmptyState[2m > [22mshould have proper semantic structure[32m 206[2mms[22m[39m
+ [32m✓[39m src/components/events/EmptyState.test.tsx[2m > [22mEmptyState[2m > [22mshould apply correct styling classes[32m 25[2mms[22m[39m
+ [32m✓[39m src/components/events/EmptyState.test.tsx[2m > [22mEmptyState[2m > [22mshould render within a Card component[32m 29[2mms[22m[39m
+ [32m✓[39m src/components/events/EventSkeleton.test.tsx[2m > [22mEventSkeleton[2m > [22mshould render skeleton structure[32m 190[2mms[22m[39m
+ [32m✓[39m src/components/events/EventSkeleton.test.tsx[2m > [22mEventSkeleton[2m > [22mshould render timeline connector dot[32m 25[2mms[22m[39m
+ [32m✓[39m src/components/events/EventSkeleton.test.tsx[2m > [22mEventSkeleton[2m > [22mshould render timeline vertical line[32m 19[2mms[22m[39m
+ [32m✓[39m src/components/events/EventSkeleton.test.tsx[2m > [22mEventSkeleton[2m > [22mshould render icon skeleton[32m 19[2mms[22m[39m
+ [32m✓[39m src/components/events/EmptyState.test.tsx[2m > [22mEmptyState[2m > [22mshould center content[32m 46[2mms[22m[39m
+ [32m✓[39m src/components/events/EmptyState.test.tsx[2m > [22mEmptyState[2m > [22mshould have spacing between sections[32m 21[2mms[22m[39m
+ [32m✓[39m src/components/events/EventSkeleton.test.tsx[2m > [22mEventSkeleton[2m > [22mshould render content skeletons[32m 54[2mms[22m[39m
+ [32m✓[39m src/components/events/EventSkeleton.test.tsx[2m > [22mEventSkeleton[2m > [22mshould render title skeleton[32m 91[2mms[22m[39m
+ [32m✓[39m src/components/events/EventSkeleton.test.tsx[2m > [22mEventSkeleton[2m > [22mshould render description skeletons[32m 22[2mms[22m[39m
+ [32m✓[39m src/components/events/EventSkeleton.test.tsx[2m > [22mEventSkeleton[2m > [22mshould render footer skeletons[32m 27[2mms[22m[39m
+ [32m✓[39m src/components/events/EventSkeleton.test.tsx[2m > [22mEventSkeleton[2m > [22mshould have proper spacing[32m 20[2mms[22m[39m
+ [32m✓[39m src/components/events/EventSkeleton.test.tsx[2m > [22mEventSkeleton[2m > [22mshould match EventCard structure[32m 21[2mms[22m[39m
+ [32m✓[39m src/components/events/EventSkeleton.test.tsx[2m > [22mEventSkeletonList[2m > [22mshould render default count of 3 skeletons[32m 68[2mms[22m[39m
+ [32m✓[39m src/components/events/EventSkeleton.test.tsx[2m > [22mEventSkeletonList[2m > [22mshould render custom count of skeletons[32m 114[2mms[22m[39m
+ [32m✓[39m src/components/events/EventSkeleton.test.tsx[2m > [22mEventSkeletonList[2m > [22mshould render single skeleton[32m 19[2mms[22m[39m
+ [32m✓[39m src/components/events/EventSkeleton.test.tsx[2m > [22mEventSkeletonList[2m > [22mshould render many skeletons[32m 185[2mms[22m[39m
+ [32m✓[39m src/components/events/EventSkeleton.test.tsx[2m > [22mEventSkeletonList[2m > [22mshould have spacing between skeletons[32m 76[2mms[22m[39m
+ [32m✓[39m src/components/events/EventSkeleton.test.tsx[2m > [22mEventSkeletonList[2m > [22mshould render zero skeletons when count is 0[32m 15[2mms[22m[39m
+ [32m✓[39m src/components/events/EventSkeleton.test.tsx[2m > [22mEventSkeletonList[2m > [22mshould give each skeleton a unique key[32m 46[2mms[22m[39m
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mauthApi[2m > [22m[2minitiateLogin[2m > [22m[2mshould call the login endpoint and return response
+[22m[39m[API] Requesting: http://localhost:8000/api/v1/auth/github/login
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mauthApi[2m > [22m[2minitiateLogin[2m > [22m[2mshould call the login endpoint and return response
+[22m[39m[API] Response status: 200 undefined
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mauthApi[2m > [22m[2minitiateLogin[2m > [22m[2mshould call the login endpoint and return response
+[22m[39m[API] Success: {
+  authorization_url: [32m'https://github.com/login/oauth/authorize'[39m,
+  state: [32m'random-state'[39m
+}
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mauthApi[2m > [22m[2minitiateLogin[2m > [22m[2mshould handle errors
+[22m[39m[API] Requesting: http://localhost:8000/api/v1/auth/github/login
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mauthApi[2m > [22m[2minitiateLogin[2m > [22m[2mshould handle errors
+[22m[39m[API] Response status: 500 Internal Server Error
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mauthApi[2m > [22m[2mrefreshToken[2m > [22m[2mshould call refresh endpoint with refresh token
+[22m[39m[API] Requesting: http://localhost:8000/api/v1/auth/refresh
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mauthApi[2m > [22m[2mrefreshToken[2m > [22m[2mshould call refresh endpoint with refresh token
+[22m[39m[API] Response status: undefined undefined
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mauthApi[2m > [22m[2mrefreshToken[2m > [22m[2mshould call refresh endpoint with refresh token
+[22m[39m[API] Success: {
+  access_token: [32m'new-access-token'[39m,
+  refresh_token: [32m'new-refresh-token'[39m,
+  token_type: [32m'Bearer'[39m
+}
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mauthApi[2m > [22m[2mgetCurrentUser[2m > [22m[2mshould return user profile with valid token
+[22m[39m[API] Requesting: http://localhost:8000/api/v1/auth/me
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mauthApi[2m > [22m[2mgetCurrentUser[2m > [22m[2mshould return user profile with valid token
+[22m[39m[API] Response status: undefined undefined
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mauthApi[2m > [22m[2mgetCurrentUser[2m > [22m[2mshould return user profile with valid token
+[22m[39m[API] Success: {
+  id: [32m'user-123'[39m,
+  github_id: [33m12345[39m,
+  username: [32m'testuser'[39m,
+  name: [32m'Test User'[39m,
+  avatar_url: [32m'https://avatars.githubusercontent.com/u/12345'[39m,
+  email: [32m'test@example.com'[39m,
+  profile_url: [32m'https://github.com/testuser'[39m,
+  created_at: [32m'2025-01-01T00:00:00Z'[39m,
+  webhook_configured: [33mfalse[39m
+}
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mauthApi[2m > [22m[2mlogout[2m > [22m[2mshould call logout endpoint and clear tokens
+[22m[39m[API] Requesting: http://localhost:8000/api/v1/auth/logout
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mauthApi[2m > [22m[2mlogout[2m > [22m[2mshould call logout endpoint and clear tokens
+[22m[39m[API] Response status: undefined undefined
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mauthApi[2m > [22m[2mlogout[2m > [22m[2mshould call logout endpoint and clear tokens
+[22m[39m[API] Success: { message: [32m'Logged out'[39m }
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mactivityApi[2m > [22m[2mgetRepositories[2m > [22m[2mshould fetch repositories without query
+[22m[39m[API] Requesting: http://localhost:8000/api/v1/activity/repositories
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mactivityApi[2m > [22m[2mgetRepositories[2m > [22m[2mshould fetch repositories without query
+[22m[39m[API] Response status: undefined undefined
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mactivityApi[2m > [22m[2mgetRepositories[2m > [22m[2mshould fetch repositories without query
+[22m[39m[API] Success: {
+  repositories: [
+    {
+      id: [33m123456[39m,
+      name: [32m'test-repo'[39m,
+      full_name: [32m'testuser/test-repo'[39m,
+      description: [32m'Test repository description'[39m,
+      private: [33mfalse[39m,
+      html_url: [32m'https://github.com/testuser/test-repo'[39m,
+      stargazers_count: [33m10[39m,
+      language: [32m'TypeScript'[39m,
+      created_at: [32m'2025-01-01T00:00:00Z'[39m,
+      updated_at: [32m'2025-01-01T12:00:00Z'[39m,
+      forks_count: [33m5[39m,
+      watchers_count: [33m10[39m,
+      size: [33m1024[39m,
+      owner: [36m[Object][39m
+    }
+  ]
+}
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mactivityApi[2m > [22m[2mgetRepositories[2m > [22m[2mshould fetch repositories with query parameter
+[22m[39m[API] Requesting: http://localhost:8000/api/v1/activity/repositories?q=test-query
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mactivityApi[2m > [22m[2mgetRepositories[2m > [22m[2mshould fetch repositories with query parameter
+[22m[39m[API] Response status: undefined undefined
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mactivityApi[2m > [22m[2mgetRepositories[2m > [22m[2mshould fetch repositories with query parameter
+[22m[39m[API] Success: {
+  repositories: [
+    {
+      id: [33m123456[39m,
+      name: [32m'test-repo'[39m,
+      full_name: [32m'testuser/test-repo'[39m,
+      description: [32m'Test repository description'[39m,
+      private: [33mfalse[39m,
+      html_url: [32m'https://github.com/testuser/test-repo'[39m,
+      stargazers_count: [33m10[39m,
+      language: [32m'TypeScript'[39m,
+      created_at: [32m'2025-01-01T00:00:00Z'[39m,
+      updated_at: [32m'2025-01-01T12:00:00Z'[39m,
+      forks_count: [33m5[39m,
+      watchers_count: [33m10[39m,
+      size: [33m1024[39m,
+      owner: [36m[Object][39m
+    }
+  ]
+}
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mactivityApi[2m > [22m[2mgetEvents[2m > [22m[2mshould fetch events with default pagination
+[22m[39m[API] Requesting: http://localhost:8000/api/v1/activity/events?page=1&per_page=30
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mactivityApi[2m > [22m[2mgetEvents[2m > [22m[2mshould fetch events with default pagination
+[22m[39m[API] Response status: undefined undefined
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mactivityApi[2m > [22m[2mgetEvents[2m > [22m[2mshould fetch events with default pagination
+[22m[39m[API] Success: { events: [] }
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mactivityApi[2m > [22m[2mgetEvents[2m > [22m[2mshould fetch events with custom pagination
+[22m[39m[API] Requesting: http://localhost:8000/api/v1/activity/events?page=2&per_page=50
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mactivityApi[2m > [22m[2mgetEvents[2m > [22m[2mshould fetch events with custom pagination
+[22m[39m[API] Response status: undefined undefined
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mactivityApi[2m > [22m[2mgetEvents[2m > [22m[2mshould fetch events with custom pagination
+[22m[39m[API] Success: { events: [] }
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mactivityApi[2m > [22m[2mgetEvents[2m > [22m[2mshould cap per_page at 100
+[22m[39m[API] Requesting: http://localhost:8000/api/v1/activity/events?page=1&per_page=100
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mactivityApi[2m > [22m[2mgetEvents[2m > [22m[2mshould cap per_page at 100
+[22m[39m[API] Response status: undefined undefined
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mactivityApi[2m > [22m[2mgetEvents[2m > [22m[2mshould cap per_page at 100
+[22m[39m[API] Success: { events: [] }
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mwebhookApi[2m > [22m[2msetupWebhook[2m > [22m[2mshould call setup webhook endpoint
+[22m[39m[API] Requesting: http://localhost:8000/api/v1/webhooks/setup/owner/repo
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mwebhookApi[2m > [22m[2msetupWebhook[2m > [22m[2mshould call setup webhook endpoint
+[22m[39m[API] Response status: undefined undefined
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mwebhookApi[2m > [22m[2msetupWebhook[2m > [22m[2mshould call setup webhook endpoint
+[22m[39m[API] Success: { success: [33mtrue[39m }
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mwebhookApi[2m > [22m[2mgetNotifications[2m > [22m[2mshould fetch notifications with default parameters
+[22m[39m[API] Requesting: http://localhost:8000/api/v1/webhooks/notifications?limit=50
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mwebhookApi[2m > [22m[2mgetNotifications[2m > [22m[2mshould fetch notifications with default parameters
+[22m[39m[API] Response status: undefined undefined
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mwebhookApi[2m > [22m[2mgetNotifications[2m > [22m[2mshould fetch notifications with default parameters
+[22m[39m[API] Success: { notifications: [] }
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mwebhookApi[2m > [22m[2mgetNotifications[2m > [22m[2mshould fetch notifications with processed filter
+[22m[39m[API] Requesting: http://localhost:8000/api/v1/webhooks/notifications?processed=false&limit=20
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mwebhookApi[2m > [22m[2mgetNotifications[2m > [22m[2mshould fetch notifications with processed filter
+[22m[39m[API] Response status: undefined undefined
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mwebhookApi[2m > [22m[2mgetNotifications[2m > [22m[2mshould fetch notifications with processed filter
+[22m[39m[API] Success: { notifications: [] }
+
+ [32m✓[39m src/lib/api.test.ts[2m > [22mtokenStorage[2m > [22mgetAccessToken[2m > [22mshould return null when no token is stored[32m 6[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mtokenStorage[2m > [22mgetAccessToken[2m > [22mshould return stored access token[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mtokenStorage[2m > [22mgetAccessToken[2m > [22mshould return null on server side[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mtokenStorage[2m > [22mgetRefreshToken[2m > [22mshould return null when no token is stored[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mtokenStorage[2m > [22mgetRefreshToken[2m > [22mshould return stored refresh token[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mtokenStorage[2m > [22msetTokens[2m > [22mshould store both access and refresh tokens[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mtokenStorage[2m > [22msetTokens[2m > [22mshould handle server side gracefully[32m 3[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mtokenStorage[2m > [22mclearTokens[2m > [22mshould remove both tokens from storage[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mtokenStorage[2m > [22mhasTokens[2m > [22mshould return false when no tokens are stored[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mtokenStorage[2m > [22mhasTokens[2m > [22mshould return false when only access token is stored[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mtokenStorage[2m > [22mhasTokens[2m > [22mshould return false when only refresh token is stored[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mtokenStorage[2m > [22mhasTokens[2m > [22mshould return true when both tokens are stored[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mType guards[2m > [22misTokenResponse[2m > [22mshould return true for valid TokenResponse[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mType guards[2m > [22misTokenResponse[2m > [22mshould return false for GitHubLoginResponse[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mType guards[2m > [22misTokenResponse[2m > [22mshould return false without refresh_token[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mType guards[2m > [22misGitHubLoginResponse[2m > [22mshould return true for valid GitHubLoginResponse[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mType guards[2m > [22misGitHubLoginResponse[2m > [22mshould return false for TokenResponse[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mauthApi[2m > [22minitiateLogin[2m > [22mshould call the login endpoint and return response[32m 27[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mauthApi[2m > [22minitiateLogin[2m > [22mshould handle errors[32m 5[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mauthApi[2m > [22mrefreshToken[2m > [22mshould call refresh endpoint with refresh token[32m 3[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mauthApi[2m > [22mrefreshToken[2m > [22mshould throw error when no refresh token exists[32m 4[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mauthApi[2m > [22mgetCurrentUser[2m > [22mshould return user profile with valid token[32m 3[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mauthApi[2m > [22mgetCurrentUser[2m > [22mshould throw error when no token exists[32m 2[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mauthApi[2m > [22mlogout[2m > [22mshould call logout endpoint and clear tokens[32m 3[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mactivityApi[2m > [22mgetRepositories[2m > [22mshould fetch repositories without query[32m 6[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mactivityApi[2m > [22mgetRepositories[2m > [22mshould fetch repositories with query parameter[32m 3[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mactivityApi[2m > [22mgetEvents[2m > [22mshould fetch events with default pagination[32m 5[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mactivityApi[2m > [22mgetEvents[2m > [22mshould fetch events with custom pagination[32m 3[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mactivityApi[2m > [22mgetEvents[2m > [22mshould cap per_page at 100[32m 3[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mwebhookApi[2m > [22msetupWebhook[2m > [22mshould call setup webhook endpoint[32m 2[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mwebhookApi[2m > [22mgetNotifications[2m > [22mshould fetch notifications with default parameters[32m 4[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mcalculateTimeRange[2m > [22mshould calculate 7 days range[32m 5[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mcalculateTimeRange[2m > [22mshould calculate 30 days range[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mcalculateTimeRange[2m > [22mshould calculate 90 days range[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mcalculateTimeRange[2m > [22mshould calculate 1 year range[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mcalculateTimeRange[2m > [22mshould calculate all time range (10 years)[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mfilterEventsByTimeRange[2m > [22mshould filter events within time range[32m 3[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mfilterEventsByTimeRange[2m > [22mshould return empty array when no events match[32m 4[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mfilterEventsByTimeRange[2m > [22mshould handle empty input[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessActivityTimeline[2m > [22mshould process events into daily data points[32m 29[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessActivityTimeline[2m > [22mshould count different event types correctly[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessActivityTimeline[2m > [22mshould handle empty array[32m 0[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessActivityTimeline[2m > [22mshould handle null/undefined input[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessActivityTimeline[2m > [22mshould skip invalid events[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessActivityTimeline[2m > [22mshould sort timeline by date ascending[32m 2[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessEventDistribution[2m > [22mshould count events by type[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessEventDistribution[2m > [22mshould sort by count descending[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessEventDistribution[2m > [22mshould calculate percentages correctly[32m 3[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessEventDistribution[2m > [22mshould handle empty array[32m 0[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessEventDistribution[2m > [22mshould handle null/undefined input[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessEventDistribution[2m > [22mshould skip invalid events[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessEventDistribution[2m > [22mshould map display names correctly[32m 0[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessTopRepositories[2m > [22mshould combine events and repository data[32m 2[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessTopRepositories[2m > [22mshould handle repositories not in repository list[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessTopRepositories[2m > [22mshould sort by total activity descending[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessTopRepositories[2m > [22mshould limit to top 5 repositories[32m 3[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessTopRepositories[2m > [22mshould filter out repos with zero activity[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessTopRepositories[2m > [22mshould handle empty inputs[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessTopRepositories[2m > [22mshould handle null/undefined inputs[32m 2[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessTopRepositories[2m > [22mshould update last activity to most recent event[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessContributionCalendar[2m > [22mshould generate 365 days of data[32m 3[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessContributionCalendar[2m > [22mshould count events per day[32m 4[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessContributionCalendar[2m > [22mshould calculate intensity levels correctly[32m 4[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessContributionCalendar[2m > [22mshould handle empty/null input[32m 4[2mms[22m[39m
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mwebhookApi[2m > [22m[2mmarkNotificationProcessed[2m > [22m[2mshould mark notification as processed
+[22m[39m[API] Requesting: http://localhost:8000/api/v1/webhooks/notifications/notification-123/mark-processed
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mwebhookApi[2m > [22m[2mmarkNotificationProcessed[2m > [22m[2mshould mark notification as processed
+[22m[39m[API] Response status: undefined undefined
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mwebhookApi[2m > [22m[2mmarkNotificationProcessed[2m > [22m[2mshould mark notification as processed
+[22m[39m[API] Success: { success: [33mtrue[39m }
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mwebhookApi[2m > [22m[2mmarkAllNotificationsProcessed[2m > [22m[2mshould mark all notifications as processed
+[22m[39m[API] Requesting: http://localhost:8000/api/v1/webhooks/notifications/mark-all-processed
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mwebhookApi[2m > [22m[2mmarkAllNotificationsProcessed[2m > [22m[2mshould mark all notifications as processed
+[22m[39m[API] Response status: undefined undefined
+
+[90mstdout[2m | src/lib/api.test.ts[2m > [22m[2mwebhookApi[2m > [22m[2mmarkAllNotificationsProcessed[2m > [22m[2mshould mark all notifications as processed
+[22m[39m[API] Success: { success: [33mtrue[39m }
+
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessContributionCalendar[2m > [22mshould be sorted chronologically[32m 28[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessLanguageBreakdown[2m > [22mshould count repositories by language[32m 2[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessLanguageBreakdown[2m > [22mshould calculate percentages correctly[32m 2[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessLanguageBreakdown[2m > [22mshould sort by bytes descending[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessLanguageBreakdown[2m > [22mshould limit to top 5 languages[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessLanguageBreakdown[2m > [22mshould skip repositories without language[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessLanguageBreakdown[2m > [22mshould handle empty/null input[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mprocessLanguageBreakdown[2m > [22mshould include language colors[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mcalculateSummary[2m > [22mshould count all event types correctly[32m 2[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mcalculateSummary[2m > [22mshould count unique repositories[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mcalculateSummary[2m > [22mshould count unique active days[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mcalculateSummary[2m > [22mshould handle empty array[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mcalculateSummary[2m > [22mshould handle null/undefined input[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mcalculateSummary[2m > [22mshould skip invalid events[32m 3[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mformatNumber[2m > [22mshould format numbers less than 1000[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mformatNumber[2m > [22mshould format thousands with K suffix[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mformatNumber[2m > [22mshould format millions with M suffix[32m 4[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mformatNumber[2m > [22mshould round to 1 decimal place[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mformatPercentage[2m > [22mshould format percentage to 1 decimal place[32m 2[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mformatPercentage[2m > [22mshould handle zero[32m 2[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mformatPercentage[2m > [22mshould handle 100[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/utils/processAnalyticsData.test.ts[2m > [22mformatPercentage[2m > [22mshould handle small numbers[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mwebhookApi[2m > [22mgetNotifications[2m > [22mshould fetch notifications with processed filter[32m 6[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mwebhookApi[2m > [22mmarkNotificationProcessed[2m > [22mshould mark notification as processed[32m 5[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mwebhookApi[2m > [22mmarkAllNotificationsProcessed[2m > [22mshould mark all notifications as processed[32m 4[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mgithubApi[2m > [22mgetUserDetails[2m > [22mshould fetch user details from GitHub API[32m 2[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mgithubApi[2m > [22mgetUserDetails[2m > [22mshould handle rate limiting[32m 49[2mms[22m[39m
+ [32m✓[39m src/lib/api.test.ts[2m > [22mgithubApi[2m > [22mgetUserDetails[2m > [22mshould handle errors[32m 4[2mms[22m[39m
+ [32m✓[39m src/hooks/useReducedMotion.test.ts[2m > [22museReducedMotion[2m > [22mshould return false when prefers-reduced-motion is not set[32m 57[2mms[22m[39m
+ [32m✓[39m src/hooks/useReducedMotion.test.ts[2m > [22museReducedMotion[2m > [22mshould return true when prefers-reduced-motion is enabled[32m 38[2mms[22m[39m
+ [32m✓[39m src/hooks/useReducedMotion.test.ts[2m > [22museReducedMotion[2m > [22mshould query for prefers-reduced-motion[32m 14[2mms[22m[39m
+ [32m✓[39m src/hooks/useReducedMotion.test.ts[2m > [22museReducedMotion[2m > [22mshould add event listener for changes (modern browsers)[32m 9[2mms[22m[39m
+ [32m✓[39m src/hooks/useReducedMotion.test.ts[2m > [22museReducedMotion[2m > [22mshould add listener for changes (legacy browsers)[32m 30[2mms[22m[39m
+ [32m✓[39m src/hooks/useReducedMotion.test.ts[2m > [22museReducedMotion[2m > [22mshould update when media query changes[32m 11[2mms[22m[39m
+ [32m✓[39m src/hooks/useReducedMotion.test.ts[2m > [22museReducedMotion[2m > [22mshould handle server-side rendering gracefully[32m 1[2mms[22m[39m
+ [32m✓[39m src/app/analytics/hooks/useTimeRange.test.ts[2m > [22museTimeRange[2m > [22mshould initialize with default preset (30d)[32m 49[2mms[22m[39m
+ [32m✓[39m src/app/analytics/hooks/useTimeRange.test.ts[2m > [22museTimeRange[2m > [22mshould initialize with custom preset[32m 5[2mms[22m[39m
+ [32m✓[39m src/app/analytics/hooks/useTimeRange.test.ts[2m > [22museTimeRange[2m > [22mshould update time range when preset changes[32m 18[2mms[22m[39m
+ [32m✓[39m src/app/analytics/hooks/useTimeRange.test.ts[2m > [22museTimeRange[2m > [22mshould calculate correct date range for 7d preset[32m 38[2mms[22m[39m
+ [32m✓[39m src/app/analytics/hooks/useTimeRange.test.ts[2m > [22museTimeRange[2m > [22mshould calculate correct date range for 30d preset[32m 10[2mms[22m[39m
+ [32m✓[39m src/app/analytics/hooks/useTimeRange.test.ts[2m > [22museTimeRange[2m > [22mshould calculate correct date range for 90d preset[32m 6[2mms[22m[39m
+ [32m✓[39m src/app/analytics/hooks/useTimeRange.test.ts[2m > [22museTimeRange[2m > [22mshould calculate correct date range for 1y preset[32m 5[2mms[22m[39m
+ [32m✓[39m src/app/analytics/hooks/useTimeRange.test.ts[2m > [22museTimeRange[2m > [22mshould calculate correct date range for all preset[32m 4[2mms[22m[39m
+ [32m✓[39m src/app/analytics/hooks/useTimeRange.test.ts[2m > [22museTimeRange[2m > [22mshould maintain stable setPreset reference[32m 9[2mms[22m[39m
+ [32m✓[39m src/app/analytics/hooks/useTimeRange.test.ts[2m > [22museTimeRange[2m > [22mshould update all return values when preset changes[32m 71[2mms[22m[39m
+ [32m✓[39m src/app/analytics/hooks/useTimeRange.test.ts[2m > [22museTimeRange[2m > [22mshould allow switching between all preset options[32m 34[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetEventColor[2m > [22mshould return correct color for PushEvent[32m 5[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetEventColor[2m > [22mshould return correct color for PullRequestEvent[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetEventColor[2m > [22mshould return correct color for IssuesEvent[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetEventColor[2m > [22mshould return default color for unknown event type[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetEventColor[2m > [22mshould have colors defined for all event types[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetEventTitle[2m > [22mshould return correct title for PushEvent with single commit[32m 2[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetEventTitle[2m > [22mshould return correct title for PushEvent with multiple commits[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetEventTitle[2m > [22mshould return correct title for opened PullRequestEvent[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetEventTitle[2m > [22mshould return correct title for merged PullRequestEvent[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetEventTitle[2m > [22mshould return correct title for IssuesEvent[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetEventTitle[2m > [22mshould return correct title for IssueCommentEvent[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetEventTitle[2m > [22mshould return correct title for CreateEvent with branch[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetEventTitle[2m > [22mshould return correct title for DeleteEvent[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetEventTitle[2m > [22mshould return correct title for ForkEvent[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetEventTitle[2m > [22mshould return correct title for WatchEvent[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetEventTitle[2m > [22mshould return correct title for ReleaseEvent[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetEventTitle[2m > [22mshould handle unknown event types gracefully[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetEventDescription[2m > [22mshould return PR title for PullRequestEvent[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetEventDescription[2m > [22mshould return issue title for IssuesEvent[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetEventDescription[2m > [22mshould return commit message for PushEvent[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetEventDescription[2m > [22mshould return null for events without description[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetEventDescription[2m > [22mshould return release name for ReleaseEvent[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetEventUrl[2m > [22mshould return commits URL for PushEvent[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetEventUrl[2m > [22mshould return PR URL for PullRequestEvent[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetEventUrl[2m > [22mshould return issue URL for IssuesEvent[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetEventUrl[2m > [22mshould return branch URL for CreateEvent with branch[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetEventUrl[2m > [22mshould return tag URL for CreateEvent with tag[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetEventUrl[2m > [22mshould return repo URL as fallback[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mformatEventDate[2m > [22mshould return "just now" for dates less than 1 minute ago[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mformatEventDate[2m > [22mshould return minutes for dates less than 1 hour ago[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mformatEventDate[2m > [22mshould return hours for dates less than 24 hours ago[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mformatEventDate[2m > [22mshould return days for dates less than 7 days ago[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mformatEventDate[2m > [22mshould return formatted date for older dates[32m 42[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetDateSeparatorLabel[2m > [22mshould return "Today" for today[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetDateSeparatorLabel[2m > [22mshould return "Yesterday" for yesterday[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetDateSeparatorLabel[2m > [22mshould return "This Week" for dates 2-6 days ago[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetDateSeparatorLabel[2m > [22mshould return "Last Week" for dates 7-13 days ago[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetDateSeparatorLabel[2m > [22mshould return "This Month" for dates 14-29 days ago[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetDateSeparatorLabel[2m > [22mshould return month and year for older dates[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgroupEventsByDate[2m > [22mshould group events by date labels[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgroupEventsByDate[2m > [22mshould handle empty array[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgroupEventsByDate[2m > [22mshould maintain event order within groups[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mtruncateText[2m > [22mshould return text as-is if under max length[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mtruncateText[2m > [22mshould truncate text and add ellipsis[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mtruncateText[2m > [22mshould handle exact max length[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mtruncateText[2m > [22mshould trim whitespace before adding ellipsis[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mtruncateText[2m > [22mshould handle empty string[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetBranchName[2m > [22mshould remove refs/heads/ prefix[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetBranchName[2m > [22mshould remove refs/tags/ prefix[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetBranchName[2m > [22mshould return string as-is if no prefix[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mgetBranchName[2m > [22mshould handle multiple slashes correctly[32m 1[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mformatCommitSha[2m > [22mshould return first 7 characters[32m 2[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mformatCommitSha[2m > [22mshould handle short SHAs[32m 2[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mformatCommitSha[2m > [22mshould handle exactly 7 characters[32m 0[2mms[22m[39m
+ [32m✓[39m src/lib/events/event-utils.test.ts[2m > [22mformatCommitSha[2m > [22mshould handle empty string[32m 1[2mms[22m[39m
+ [32m✓[39m src/components/events/DateSeparator.test.tsx[2m > [22mDateSeparator[2m > [22mshould render the label[32m 80[2mms[22m[39m
+ [32m✓[39m src/components/events/DateSeparator.test.tsx[2m > [22mDateSeparator[2m > [22mshould render with uppercase styling[32m 9[2mms[22m[39m
+ [32m✓[39m src/components/events/DateSeparator.test.tsx[2m > [22mDateSeparator[2m > [22mshould render with correct structure[32m 13[2mms[22m[39m
+ [32m✓[39m src/components/events/DateSeparator.test.tsx[2m > [22mDateSeparator[2m > [22mshould render different labels[32m 14[2mms[22m[39m
+ [32m✓[39m src/components/events/DateSeparator.test.tsx[2m > [22mDateSeparator[2m > [22mshould apply correct CSS classes[32m 8[2mms[22m[39m
+ [32m✓[39m src/components/events/DateSeparator.test.tsx[2m > [22mDateSeparator[2m > [22mshould handle empty label gracefully[32m 9[2mms[22m[39m
+ [32m✓[39m src/components/events/DateSeparator.test.tsx[2m > [22mDateSeparator[2m > [22mshould handle special characters in label[32m 7[2mms[22m[39m
+ [32m✓[39m src/components/events/DateSeparator.test.tsx[2m > [22mDateSeparator[2m > [22mshould have proper semantic structure[32m 6[2mms[22m[39m
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m13 passed[39m[22m[90m (14)[39m
+[2m      Tests [22m [1m[31m25 failed[39m[22m[2m | [22m[1m[32m291 passed[39m[22m[2m | [22m[33m8 skipped[39m[90m (324)[39m
+[2m   Start at [22m 15:07:10
+[2m   Duration [22m 36.10s[2m (transform 4.58s, setup 23.95s, collect 92.95s, tests 9.34s, environment 62.66s, prepare 3.23s)[22m
+
+ ELIFECYCLE  Command failed with exit code 1.
