@@ -51,7 +51,9 @@ export function getEventTitle(event: GitHubEvent): string {
 
   if (isPushEvent(event)) {
     const branch = event.payload.ref?.replace("refs/heads/", "") || "unknown";
-    const commitCount = event.payload.commits?.length || 0;
+    // Use 'size' field which contains the actual number of commits
+    // 'commits' array may be truncated to first 20 commits
+    const commitCount = event.payload.size || event.payload.commits?.length || 0;
     return `Pushed ${commitCount} commit${commitCount !== 1 ? "s" : ""} to ${branch}`;
   }
 

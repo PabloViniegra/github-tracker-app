@@ -69,6 +69,30 @@ describe('getEventTitle', () => {
     expect(getEventTitle(event)).toBe('Pushed 2 commits to main');
   });
 
+  it('should use size field when available for PushEvent', () => {
+    const event = createMockPushEvent({
+      payload: {
+        ref: 'refs/heads/main',
+        size: 5, // Real number of commits
+        commits: [{}, {}], // Only 2 commits in array (truncated)
+      } as any,
+    });
+    // Should use size (5) instead of commits.length (2)
+    expect(getEventTitle(event)).toBe('Pushed 5 commits to main');
+  });
+
+  it('should fallback to commits length when size is 0 or undefined', () => {
+    const event = createMockPushEvent({
+      payload: {
+        ref: 'refs/heads/main',
+        size: 0, // Size is 0
+        commits: [{}, {}, {}], // 3 commits in array
+      } as any,
+    });
+    // Should fallback to commits.length (3) when size is 0
+    expect(getEventTitle(event)).toBe('Pushed 3 commits to main');
+  });
+
   it('should return correct title for opened PullRequestEvent', () => {
     const event = createMockPullRequestEvent({
       payload: {
